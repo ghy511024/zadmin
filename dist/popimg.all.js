@@ -1,0 +1,1 @@
+$(function(){$("body").append($('\r\n<div id="popimg" class="popimg">\r\n    <span v-bind:title="message">\r\n    </span>\r\n</div>\r\n')),window.popimg=new Vue({el:"#popimg",data:{message:"页面加载于 "+new Date,showClass:"hide"},methods:{show:function(){this.showClass="show"},hide:function(){this.showClass="hide"}},ready:function(){alert("准备就绪")}})});

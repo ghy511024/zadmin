@@ -1,10 +1,10 @@
 
 fis.match('*', {
-    release: "$0"
+    release: false,
 })
 
 //===================== css 编译处理  ===================
-fis.match('(*.scss)', {
+fis.match('*(*all*.scss)', {
     rExt: '.css',
     parser: fis.plugin('node-sass', {// ����scss
     }),
@@ -17,23 +17,28 @@ fis.match('(*.scss)', {
         "browsers": ['Firefox >= 20', 'Safari >= 6', 'Explorer >= 8', 'Chrome >= 12', "ChromeAndroid >= 2.0"],
         "flexboxfixer": true,
         "gradientfixer": true
-    })
+    }),
+    release: "/dist/css/$1"
 })
 fis.match('*(*all*.js)', {
     release: "/dist/$1",
-   
     optimizer: fis.plugin('uglify-js')
 })
 
 ////############线上发布#################
 fis.media('qa').match('*', {
     release: false,
-}).match('*(*all*.js)', {
+}).match('*(*all*.js,scss)', {
     release: "$1",
     deploy: fis.plugin('local-deliver', {
         to: "dist"
     }),
     optimizer: fis.plugin('uglify-js')
+}).match('*(*all*.scss)', {
+    release: "$1",
+    deploy: fis.plugin('local-deliver', {
+        to: "dist/css"
+    })
 })
 
 //===================== 忽略规则  ===================
