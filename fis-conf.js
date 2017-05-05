@@ -18,27 +18,24 @@ fis.match('*(*all*.scss)', {
         "flexboxfixer": true,
         "gradientfixer": true
     }),
-    release: "/dist/css/$1"
-})
-fis.match('*(*all*.js)', {
-    release: "/dist/$1",
-    optimizer: fis.plugin('uglify-js')
 })
 
-////############线上发布#################
-fis.media('qa').match('*', {
-    release: false,
-}).match('*(*all*.js,scss)', {
+// 发布规则
+fis.match('*(*all*.js)', {
     release: "$1",
-    deploy: fis.plugin('local-deliver', {
-        to: "dist"
-    }),
+    optimizer: fis.plugin('uglify-js')
+}).match('*(*test*.js)', {
+    release: "/js/$1",
     optimizer: fis.plugin('uglify-js')
 }).match('*(*all*.scss)', {
-    release: "$1",
-    deploy: fis.plugin('local-deliver', {
-        to: "dist/css"
-    })
+    release: "/css/$1",
+})
+
+// jsptpl 模版
+fis.match("*(*.tpl.jsp)", {
+    parser: fis.plugin('jsptpl'),
+    rExt: '.js',
+    release: "/jstpl/$1"
 })
 
 //===================== 忽略规则  ===================
