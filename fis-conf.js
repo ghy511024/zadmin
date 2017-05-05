@@ -28,7 +28,7 @@ fis.match('*(*all*.js)', {
 ////############线上发布#################
 fis.media('qa').match('*', {
     release: false,
-}).match('*(*all*.js,scss)', {
+}).match('*(*all*.js)', {
     release: "$1",
     deploy: fis.plugin('local-deliver', {
         to: "dist"
