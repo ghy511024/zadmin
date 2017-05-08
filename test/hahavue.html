@@ -11,21 +11,13 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-        <div id="app">
-            <h1>{{ title }}</h1>
-            <p v-if="isboy">im is boy</p>
-            <ol>
-                <li v-for="item in list">
-                    {{ item.text }}
-                </li>
-            </ol>
-            <test-component></test-component>
+        <div class="app" id="app">
+            <App></App>
         </div>
         <script src="https://unpkg.com/vue/dist/vue.js"></script>
-        <script type="text/javascript" src="../dist/demotest/vue/plug1.js"></script>
+        <script src="mod.js" data-loader></script>
+        <script type="text/javascript" src="../dist/vue/index.js"></script>
         <script type="text/javascript">
-
         </script>
-
     </body>
 </html>

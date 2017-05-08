@@ -3,6 +3,7 @@ fis.match('*', {
     release: false,
 })
 
+
 //===================== css 编译处理  ===================
 fis.match('*(*all*.scss)', {
     rExt: '.css',
@@ -45,9 +46,10 @@ fis.hook('module', {
              }*/
 });
 // vue 文件
-fis.match('*vue/(*.vue)', {
+fis.match('vue/(*.vue)', {
     isMod: true,
     rExt: 'js',
+    useSameNameRequire: true,
     parser: [
         fis.plugin('vue-component', {runtimeOnly: true, // vue@2.x 有润timeOnly模式，为ture时，template会在构建时转为render方法 
             // styleNameJoin 
@@ -60,7 +62,31 @@ fis.match('*vue/(*.vue)', {
             cssScopedFlag: '__vuec__', // 兼容旧的ccs scoped模式而存在，此例子会将组件中所有的`__vuec__`替换为 `scoped id`，不需要设为空 
         })
     ],
-    release: "/demotest/vue/$1"
+    release: "vue/$1"
+});
+
+fis.match('vue/**.vue:js', {
+    isMod: true,
+    rExt: 'js',
+    useSameNameRequire: true,
+    parser: [
+        fis.plugin('babel-6.x', {
+//            presets: ['es2015-loose', 'react', 'stage-3']
+        }),
+        fis.plugin('translate-es3ify', null, 'append')
+    ]
+});
+// 模块文件
+fis.match('vue/(**.js)', {
+//    isMod: true,
+    release: "vue/$1",
+//     useSameNameRequire: true
+    parser: [
+        fis.plugin('babel-6.x', {
+//            presets: ['es2015-loose', 'react', 'stage-3']
+        }),
+        fis.plugin('translate-es3ify', null, 'append')
+    ]
 });
 
 // jsptpl 模版

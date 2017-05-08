@@ -1,5 +1,7 @@
 define('vue/plug1.vue', function(require, exports, module) {
 
+"use strict";
+
 //
 //
 //
@@ -18,25 +20,21 @@ define('vue/plug1.vue', function(require, exports, module) {
 
 
 module.exports = {
-    data: function () {
+    data: function data() {
         return {
             level1: "xxx"
-        }
+        };
     }, name: "test"
-}
+};
 
 var app = new Vue({
     el: "#app",
     data: {
         title: "我是一个标题",
-        list: [
-            {text: "111"},
-            {text: "222"}
-        ],
+        list: [{ text: "111" }, { text: "222" }],
         isboy: true
     }
-})
-
+});
 var __vue__options__;
 if(exports && exports.__esModule && exports.default){
   __vue__options__ = exports.default;
