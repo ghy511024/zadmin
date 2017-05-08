@@ -16,7 +16,7 @@ body {
   bottom: 0;
   left: 0;
   -webkit-transition: all .3s ease-in-out;
-          transition: all .3s ease-in-out;
+  transition: all .3s ease-in-out;
 }
 
 .pop-modal {
@@ -24,7 +24,7 @@ body {
   position: fixed;
   z-index: 101;
   -webkit-transition: opacity .5s ease, scale .5s ease;
-          transition: opacity .5s ease, scale .5s ease;
+  transition: opacity .5s ease, scale .5s ease;
   opacity: 0;
 }
 
@@ -33,7 +33,7 @@ body {
       -ms-transform: scale(5);
           transform: scale(5);
   -webkit-transition: all 0.2s cubic-bezier(0.4, 0, 1, 1);
-          transition: all 0.2s cubic-bezier(0.4, 0, 1, 1);
+  transition: all 0.2s cubic-bezier(0.4, 0, 1, 1);
 }
 
 .pop-modal.animate-in {
@@ -65,7 +65,7 @@ body {
   cursor: pointer;
   color: #ccc;
   -webkit-transition: all .3s ease-in-out;
-          transition: all .3s ease-in-out;
+  transition: all .3s ease-in-out;
 }
 
 .pop-modal .pop-close:hover {
@@ -108,7 +108,7 @@ body {
 
 .pop-modal .modal_content .pop-list.pop-in li {
   -webkit-transition: all .5s ease;
-          transition: all .5s ease;
+  transition: all .5s ease;
   -webkit-transition-delay: .4s;
           transition-delay: .4s;
   opacity: 1;

@@ -1,7 +1,7 @@
 <template>
-<div id="app1">
-    <h1>{{title}}你好啊</h1>
-</div>
+    <div id="app1">
+        <h1>{{title}}你好啊</h1>
+    </div>
 </template>
 
 <style lang="scss" scoped>
