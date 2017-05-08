@@ -18,6 +18,7 @@ var app = new Vue({
     }
 })
 
+
 var __vue__options__;
 if(exports && exports.__esModule && exports.default){
   __vue__options__ = exports.default;
