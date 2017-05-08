@@ -38,9 +38,15 @@ fis.match("*(*.tpl.jsp)", {
     release: "/jstpl/$1"
 })
 
+fis.hook('module', {
+    mode: 'mod'
+            /*paths : {
+             'main': 'components/component/main' 
+             }*/
+});
 // vue 文件
-
 fis.match('*vue/(*.vue)', {
+    isMod: true,
     rExt: 'js',
     parser: [
         fis.plugin('vue-component', {runtimeOnly: true, // vue@2.x 有润timeOnly模式，为ture时，template会在构建时转为render方法 
@@ -56,6 +62,7 @@ fis.match('*vue/(*.vue)', {
     ],
     release: "/demotest/vue/$1"
 });
+
 // jsptpl 模版
 fis.match("**plug2.js", {
     release: "/demotest/jsptpl/plug2.js",
