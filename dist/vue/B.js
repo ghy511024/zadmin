@@ -10,13 +10,13 @@ define('vue/B.vue', function(require, exports, module) {
 //
 
 module.exports = {
-        created: function created() {
-                console.log('组件B 加载完成');
-        },
+    created: function created() {
+        console.log('组件B 加载完成');
+    },
 
-        methods: {
-                //
-        }
+    methods: {
+        //
+    }
 };
 var __vue__options__;
 if(exports && exports.__esModule && exports.default){

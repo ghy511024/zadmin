@@ -39,12 +39,7 @@ fis.match("*(*.tpl.jsp)", {
     release: "/jstpl/$1"
 })
 
-fis.hook('module', {
-    mode: 'mod'
-            /*paths : {
-             'main': 'components/component/main' 
-             }*/
-});
+
 // vue 文件
 fis.match('vue/(*.vue)', {
     isMod: true,
@@ -63,6 +58,10 @@ fis.match('vue/(*.vue)', {
         })
     ],
     release: "vue/$1"
+});
+
+fis.hook('module', {
+    mode: 'mod'
 });
 
 fis.match('vue/**.vue:js', {
