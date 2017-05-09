@@ -17,15 +17,15 @@
 
 <script>
     import ComponentB from 'vue/B.vue';
-            export default {
-            components: {
-            ComponentB,
+    export default {
+        components: {
+                ComponentB,
             },
-                    created() {
-            console.log('组件A 加载完成');
+            created() {
+                console.log('组件A 加载完成');
             },
-                    methods: {
-                    //
-                    }
+            methods: {
+                //
             }
+    }
 </script>

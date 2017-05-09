@@ -6,12 +6,12 @@
 
 <script>
     module.exports = {
-    created() {
-    console.log('组件B 加载完成');
-    },
-            methods: {
+        created() {
+            console.log('组件B 加载完成');
+        },
+        methods: {
             //
-            }
+        }
     }
 </script>
 
