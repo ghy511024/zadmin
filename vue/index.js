@@ -4,7 +4,6 @@ var app = new Vue({
     el: '#app',
     methods: {},
     components: {
-        Index: ghy,
         App: require('vue/A.vue')["default"]
     },
     created() {
