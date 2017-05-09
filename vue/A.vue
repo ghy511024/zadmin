@@ -17,13 +17,12 @@
 
 <script>
     import ComponentB from 'vue/B.vue';
-            // @require '../less/other2.less';
             export default {
             components: {
             ComponentB,
             },
                     created() {
-            console.log('Index page created!');
+            console.log('组件A 加载完成');
             },
                     methods: {
                     //

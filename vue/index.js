@@ -1,16 +1,16 @@
 __inline("B.vue");
-__inline("A.vue");
-var app = new Vue({
-  el: '#app',
-  methods: {
+        __inline("A.vue");
+        var app = new Vue({
+        el: '#app',
+                methods: {
 
 
-  },
-  components: {
+                },
+                components: {
 //    Index: ghy,
-     App: require('vue/A.vue')["default"]
-  },
-  created() {
-    console.log('created');
-  }
-});
+                App: require('vue/A.vue')["default"]
+                },
+                created() {
+        console.log('主页加载完成');
+        }
+        });

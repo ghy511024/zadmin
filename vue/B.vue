@@ -1,5 +1,5 @@
 <template>
-    <div class="component-b">
+    <div class="B">
         我是组件B 颜色是蓝色
     </div>
 </template>
@@ -7,7 +7,7 @@
 <script>
     module.exports = {
     created() {
-    console.log('component a created !');
+    console.log('组件B 加载完成');
     },
             methods: {
             //
@@ -16,7 +16,7 @@
 </script>
 
 <style lang="less" scoped>
-    .component-b {
+    .B {
         position:absolute;
         width:300px;
         height:100px;

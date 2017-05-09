@@ -12,13 +12,12 @@ var _B2 = _interopRequireDefault(_B);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
-// @require '../less/other2.less';
 exports["default"] = {
         components: {
                 ComponentB: _B2["default"]
         },
         created: function created() {
-                console.log('Index page created!');
+                console.log('组件A 加载完成');
         },
 
         methods: {
