@@ -6,6 +6,6 @@ TPL.getTpl = TPL.getTpl || function (_id) {
 };
 
 (function (TPL) {
-    TPL.tplmap['zadmin-popimg'] = '<div class="overlay" style="display: none;"></div><div class="pop-modal"><i class="pop-close iconfont icon-close_m"></i><i class="pop-detail iconfont icon-menu"></i><div class="modal_content"><ul class="pop-list"></ul><img src="http://fengyun-bar.b0.upaiyun.com/1470742916289691.jpg"></div></div>';
+    TPL.tplmap['zadmin-popimg'] = '<div class="popimg-panel"><div class="popimg-overlay" style="display: none;"></div><div class="popimg-modal"><i class="popimg-close iconfont icon-close_m"></i><i class="popimg-detail iconfont icon-menu"></i><div class="modal_content"><ul class="popimg-list"></ul><img src="" /></div></div></div>';
 })(TPL);
    
