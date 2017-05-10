@@ -3,9 +3,7 @@ __inline("A.vue");
 
 var app = new Vue({
     el: '#app',
-    methods: {
-
-    },
+    methods: {},
     components: {
         App: require('vue/A.vue')["default"]
     },

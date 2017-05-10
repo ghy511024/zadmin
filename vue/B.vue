@@ -17,13 +17,13 @@
 
 <style lang="less" scoped>
     .B {
-        position:absolute;
-        width:300px;
-        height:100px;
-        left:50%;
-        margin-left:-150px;
-        top:50px;
-        background:blue;
-        color:yellow;
+        position: absolute;
+        width: 300px;
+        height: 100px;
+        left: 50%;
+        margin-left: -150px;
+        top: 50px;
+        background: blue;
+        color: yellow;
     }
 </style>
