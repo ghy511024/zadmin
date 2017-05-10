@@ -88,15 +88,16 @@
   transition: all .3s ease-in-out;
 }
 
-.popimg-panel .popimg-modal .popimg-close:hover {
-  -webkit-transform: scale(1.3);
-      -ms-transform: scale(1.3);
-          transform: scale(1.3);
-}
-
 .popimg-panel .popimg-modal .popimg-detail {
   top: 30px;
   cursor: pointer;
+}
+
+.popimg-panel .popimg-modal .popimg-close:hover,
+.popimg-panel .popimg-modal .popimg-detail:hover {
+  -webkit-transform: scale(1.3);
+      -ms-transform: scale(1.3);
+          transform: scale(1.3);
 }
 
 .popimg-panel .popimg-modal .modal_content {

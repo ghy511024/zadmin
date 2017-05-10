@@ -74,13 +74,13 @@
       color: #ccc;
       transition: all .3s ease-in-out;
     }
-    .popimg-close:hover{
-      transform: scale(1.3);
-    }
-
     .popimg-detail{
       top: 30px;
       cursor: pointer;
+    }
+    .popimg-close:hover,
+    .popimg-detail:hover{
+      transform: scale(1.3);
     }
 
     .modal_content{
