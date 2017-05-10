@@ -1,8 +1,24 @@
-body{
-    margin: 0;
-    padding: 0;
+//@import 'http://at.alicdn.com/t/font_1jki9a43a7adobt9.css';
+@font-face {font-family: "iconfont";
+  src: url('//at.alicdn.com/t/font_1jki9a43a7adobt9.eot?t=1493965735903'); /* IE9*/
+  src: url('//at.alicdn.com/t/font_1jki9a43a7adobt9.eot?t=1493965735903#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('//at.alicdn.com/t/font_1jki9a43a7adobt9.woff?t=1493965735903') format('woff'), /* chrome, firefox */
+  url('//at.alicdn.com/t/font_1jki9a43a7adobt9.ttf?t=1493965735903') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+  url('//at.alicdn.com/t/font_1jki9a43a7adobt9.svg?t=1493965735903#iconfont') format('svg'); /* iOS 4.1- */
 }
-.overlay{
+
+.iconfont {
+  font-family:"iconfont" !important;
+  font-size:16px;
+  font-style:normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.icon-close_m:before { content: "\e612"; }
+.icon-menu:before { content: "\e646"; }
+
+.popimg-panel{
+  .popimg-overlay{
     display: none;
     position: fixed;
     width: 100%;
@@ -15,8 +31,9 @@ body{
     bottom: 0;
     left: 0;
     transition: all .3s ease-in-out;
-}
-.pop-modal{
+  }
+
+  .popimg-modal{
     display: none;
     position: fixed;
     z-index: 101;
@@ -24,80 +41,82 @@ body{
     opacity: 0;
 
     &.animate-out{
-        transform: scale(5);
-        transition: all .2s cubic-bezier(0.4, 0, 1, 1);
+      transform: scale(5);
+      transition: all .2s cubic-bezier(0.4, 0, 1, 1);
     }
     &.animate-in{
-        opacity: 1;
-        transition-delay: .5s;
+      opacity: 1;
+      transition-delay: .5s;
     }
 
     .modal_content{
-        position: relative;
-        width: 100%;
-        height: 100%;
+      position: relative;
+      width: 100%;
+      height: 100%;
     }
 
     img{
-        display: block;
-        width: 100%;
-        height: 100%;
+      display: block;
+      width: 100%;
+      height: 100%;
     }
 
-    .pop-close,
-    .pop-detail{
-        width: 1em;
-        height: 1em;
-        font-size: 26px;
-        position: absolute;
-        top: 0;
-        right: -1.2em;
-        cursor: pointer;
-        color: #ccc;
-        transition: all .3s ease-in-out;
+    .popimg-close,
+    .popimg-detail{
+      width: 1em;
+      height: 1em;
+      font-size: 26px;
+      position: absolute;
+      top: 0;
+      right: -1.2em;
+      cursor: pointer;
+      color: #ccc;
+      transition: all .3s ease-in-out;
     }
-    .pop-close:hover{
-        transform: scale(1.3);
+    .popimg-close:hover{
+      transform: scale(1.3);
     }
 
-    .pop-detail{
-        top: 30px;
-        cursor: pointer;
+    .popimg-detail{
+      top: 30px;
+      cursor: pointer;
     }
 
     .modal_content{
-        overflow: hidden;
+      overflow: hidden;
     }
 
-    .modal_content .pop-list{
-        background-color: rgba(0,0,0,.6);
-        padding: 20px;
-        position: absolute;
-        right: 0;
-        top: -100%;
-        height: 100%;
-        width: 30%;
-        max-width: 300px;
-        margin: 0;
-        list-style: none;
-        box-sizing: border-box;
-        color: #fff;
+    .modal_content .popimg-list{
+      background-color: rgba(0,0,0,.6);
+      padding: 20px;
+      position: absolute;
+      right: 0;
+      top: -100%;
+      height: 100%;
+      width: 30%;
+      max-width: 300px;
+      margin: 0;
+      list-style: none;
+      box-sizing: border-box;
+      color: #fff;
 
-        li{
-            word-break: break-all;
-            word-wrap: break-word;
-            opacity: 0;
-            margin-bottom: 10px;
-        }
+      li{
+        word-break: break-all;
+        word-wrap: break-word;
+        opacity: 0;
+        transition: all .5s ease;
+        margin-bottom: 10px;
+      }
 
-        &.pop-in li{
-            transition: all .5s ease;
-            transition-delay: .4s;
-            opacity: 1;
-        }
+      &.popimg-in li{
+        transition-delay: .4s;
+        opacity: 1;
+      }
     }
 
+  }
 }
-.pop-show .overlay{
+
+.popimg-show .popimg-overlay{
     opacity: .85;
 }
