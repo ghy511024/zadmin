@@ -4,8 +4,9 @@
  * @qq：249398279
  * @version v3.0
  * */
-var Admins = (function () {
+window.Admins = (function (ZA) {
     var admin = {
+        navData: {},
         init: function () {
             this.load();
             this.layout();
@@ -83,12 +84,16 @@ var Admins = (function () {
                 $(".nav-content").removeClass("active");
                 $("#" + _id).addClass("active");
             })
+            
+            
         },
         load: function () {
             if ($(".topbar").length == 0) {
                 if ((typeof AdminPage != "undefined") && AdminPage != null) {
                     admin.cpage(AdminPage);
+                    ZA.Search.cacheData(AdminPage);
                     admin.cRightPage();
+
                 } else {
                     var url = window.CONF_URL;
                     if (Ut.Null(url)) {
@@ -96,17 +101,18 @@ var Admins = (function () {
                     }
                     $.ajax({
                         url: url,
-                        type: "post",
+                        type: "get",
                         data: ({}),
                         dataType: "json",
                         success: function (ret) {
+                            ZA.navData = ret;
+                            ZA.Search.cacheData(ret);
                             admin.cpage(ret);
                             Admins.cRightPage();
                         }
                     })
                 }
             }
-//            this.cRightPage();
         },
         cpage: function (data) {
             //布局页面
@@ -272,8 +278,14 @@ var Admins = (function () {
                     $(btn).addClass(cla)
                     $(r).append(btn)
                 }
+                //===搜索组件初始化====
+//                $(spanel).find(".search-result ul").append("<li>asdfasdf</li><li>asdfasdf</li>")
+                $(r).append(spanel)
                 $(".topbar").append($(r))
             }
+            var spanel = zen("div.search-panel>input.search-ipt+div.search-result>ul")
+            $(".topbar").append($(spanel))
+            ZA.Search.init();//搜索组件初始化
         }
     }
     var ret = {
@@ -285,10 +297,114 @@ var Admins = (function () {
         }
     }
     return ret;
-})();
+})(window.ZA = window.ZA || {});
+/**
+ * 搜索模块
+ * */
+(function (ZA) {
+    var hover_link = false;
+    var Search = {
+        map: {},
+        init: function () {
+            this.initEvent();
+        },
+        initEvent: function () {
+            $(".search-result").on({"mouseover": function () {
+                    hover_link = true;
+                }, mouseleave: function () {
+                    hover_link = false;
+                }})
+            $(".search-ipt").on("focus", function () {
+                var value = $(this).val() || "";
+//                if (value.length > 0) {
+                setTimeout(function () {
+                    ZA.Search.showSearch();
+                    ZA.Search.renderDom(value);
+                }, 200)
+            })
+            $(".search-ipt").on("blur", function () {
+                if (!hover_link) {
+                    ZA.Search.hideSearch();
+                }
+            })
+            $(".search-ipt").keyup(function () {
+                var value = $(this).val();
+                ZA.Search.renderDom(value);
+            })
+        },
+        cacheData: function (data) {
+//            ZA.navData = ZA.navData || [];
+            for (var i = 0; i < data.length; i++) {
+                // 第一层遍历
+                var navobj = data[i];
+                if (navobj != null) {
+                    var name = navobj["name"];
+                    var url = navobj["link"];
+                    this.map[name] = url;
+                    // 第二层 tag 遍历
+                    if (navobj.tag != null && navobj.tag.length > 0) {
+                        for (var j = 0; j < navobj.tag.length; j++) {
+                            var tagobj = navobj.tag[j];
+                            var name = tagobj["name"];
+                            var url = tagobj["url"];
+                            this.map[name] = url;
+                            // 第三层遍历
+                            if (tagobj.links != null) {
+                                for (var m = 0; m < tagobj.links.length; m++) {
+                                    var link = tagobj.links[m];
+                                    var name = link["name"];
+                                    var url = link["url"];
+                                    this.map[name] = url;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            console.log(JSON.stringify(this.map));
+        },
+        getSearch: function (skey) {
+            if (skey == null || skey.length == 0) {
+                return [];
+            }
+            var reg = new RegExp(skey);
+            var ret = [];
+            for (var key in this.map) {
+                if (reg.test(key) && !Ut.Null(this.map[key])) {
+                    var obj = {};
+                    obj["name"] = key
+                    obj["link"] = this.map[key]
+                    ret.push(obj);
+                }
+            }
+            console.log(ret)
+            return ret;
+        },
+        renderDom: function (value) {
+            var ret = ZA.Search.getSearch(value);
+            var str = "";
+            if (ret != null && ret.length > 0) {
+                for (var i = 0; i < ret.length; i++) {
+                    var link = ret[i];
+                    var name = link["name"];
+                    var link = link["link"];
+                    str += "<li><a href='" + link + "' target='_blank'>" + name + "</a></li>";
+                }
+            }
+            $(".search-result ul").empty().append($(str))
+        },
+        hideSearch: function () {
+            $(".search-result").hide();
+        },
+        showSearch: function () {
+            $(".search-result").fadeIn();
+        }
+    }
+    ZA.Search = Search;
+})(window.ZA = window.ZA || {});
 $(document).ready(function () {
-//    Admins.init();
+    Admins.init();
     if (window.zadmin) {
-//        zadmin.init();
+        zadmin.init();
     }
 })
