@@ -9,10 +9,24 @@ and open the template in the editor.
         <title>TODO supply a title</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <script type="text/javascript" src="/dist/js/popimg.test.js"></script>
-        <link rel="stylesheet" href="/dist/js/popimg.all.css"/>
+        <link rel="stylesheet" href="../dist/css/popimg.all.css"/>
     </head>
     <body>
+        <script type="text/javascript" src="http://static.ws.kukuplay.com/common/lib/jquery/v1.9.2/jquery-1.9.2.js"></script>
+        <script type="text/javascript" src="../dist/popimg.all.js"></script>
         <div>TODO write content</div>
+        <div class="preview-photo" data-href="http://fengyun-bar.b0.upaiyun.com/1470742916289691.jpg">click to view img</div>
+
+        <script type="text/javascript">
+            $(function(){
+                popimg.showImage([{
+                    src:'http://fengyun-bar.b0.upaiyun.com/1470742916289691.jpg',
+                    info: 'test object'
+                },{
+                    src: 'http://fengyun-bar.b0.upaiyun.com/1458206426851701.png',
+                    info: 'asdfasdfasdf'
+                }]);
+            });
+        </script>
     </body>
 </html>

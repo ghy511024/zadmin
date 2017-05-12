@@ -3,7 +3,7 @@ define('vue/A.vue', function(require, exports, module) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
-        value: true
+    value: true
 });
 
 var _B = require('vue/B.vue');
@@ -13,16 +13,16 @@ var _B2 = _interopRequireDefault(_B);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 exports["default"] = {
-        components: {
-                ComponentB: _B2["default"]
-        },
-        created: function created() {
-                console.log('组件A 加载完成');
-        },
+    components: {
+        ComponentB: _B2["default"]
+    },
+    created: function created() {
+        console.log('组件A 加载完成');
+    },
 
-        methods: {
-                //
-        }
+    methods: {
+        //
+    }
 }; //
 //
 //

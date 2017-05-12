@@ -12,13 +12,13 @@ define('vue/B.vue', function(require, exports, module) {
 //
 
 module.exports = {
-        created: function created() {
-                console.log('组件B 加载完成');
-        },
+    created: function created() {
+        console.log('组件B 加载完成');
+    },
 
-        methods: {
-                //
-        }
+    methods: {
+        //
+    }
 };
 var __vue__options__;
 if(exports && exports.__esModule && exports.default){
@@ -40,7 +40,7 @@ define('vue/A.vue', function(require, exports, module) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
-        value: true
+    value: true
 });
 
 var _B = require('vue/B.vue');
@@ -50,16 +50,16 @@ var _B2 = _interopRequireDefault(_B);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 exports["default"] = {
-        components: {
-                ComponentB: _B2["default"]
-        },
-        created: function created() {
-                console.log('组件A 加载完成');
-        },
+    components: {
+        ComponentB: _B2["default"]
+    },
+    created: function created() {
+        console.log('组件A 加载完成');
+    },
 
-        methods: {
-                //
-        }
+    methods: {
+        //
+    }
 }; //
 //
 //
@@ -92,14 +92,14 @@ __vue__options__._scopeId = "_v-17b901ad"
 
 });
 ;
+
 var app = new Vue({
-                el: '#app',
-                methods: {},
-                components: {
-                                //    Index: ghy,
-                                App: require('vue/A.vue')["default"]
-                },
-                created: function created() {
-                                console.log('主页加载完成');
-                }
+    el: '#app',
+    methods: {},
+    components: {
+        App: require('vue/A.vue')["default"]
+    },
+    created: function created() {
+        console.log('主页加载完成');
+    }
 });

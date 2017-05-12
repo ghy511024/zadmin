@@ -1,5 +1,6 @@
 __inline("B.vue");
 __inline("A.vue");
+
 var app = new Vue({
     el: '#app',
     methods: {},
