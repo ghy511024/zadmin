@@ -193,7 +193,9 @@ window.popimg = (function () {
         <div class="preview-photo" data-href="http://fengyun-bar.b0.upaiyun.com/1470742916289691.jpg">click to view img</div>
         <script type="text/javascript">
             $(function () {
-                popimg.showImage();
+                $("#xx").click(function () {
+                    popimg.showImage(["http://fengyun-bar.b0.upaiyun.com/1470742916289691.jpg", "http://fengyun-bar.b0.upaiyun.com/1466154941487481.jpg"]);
+                })
             });
         </script>
     </body>
