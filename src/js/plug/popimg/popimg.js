@@ -38,12 +38,12 @@ window.popimg = (function () {
                 popimage.computePosition();
             });
             // -click
-            $('body').on('click', '.preview-photo', function (evt) {
-                var data = $(evt.target).attr('data-href');
-                // 显示图片
-                popimage.showImage(data);
-                return false;
-            });
+            // $('body').on('click', '.preview-photo', function (evt) {
+            //     var data = $(evt.target).attr('data-href');
+            //     // 显示图片
+            //     popimage.showImage(data);
+            //     return false;
+            // });
             // 关闭图片
             // dominstance.overlay.on('click', function () {
             //     popimage.hide();
@@ -79,7 +79,7 @@ window.popimg = (function () {
         resetDom: function () {
             dominstance.modal.removeClass('animate-out animate-in');
             dominstance.overlay.removeAttr('style').hide();
-            dominstance.switcher.hide();
+            dominstance.switcher.hide().find('*').removeAttr('style');
             $('body').removeClass('popimg-show');
             $('.modal_content>.popimg-list', dominstance.modal).removeAttr('style')
                                                                .removeClass('popimg-in');
@@ -133,6 +133,7 @@ window.popimg = (function () {
                 if(imgData.length > 1){
                     // 显示切换箭头
                     dominstance.switcher.fadeIn();
+                    popimage.switchImg(0);
                 }
                 popimage.settleImage();
             });
@@ -156,6 +157,9 @@ window.popimg = (function () {
                 }else if(currentIdx >= imgData.length-1){
                     dominstance.switcher.find('.popimg-next').animate({right: '-100%'}, 200);
                     dominstance.switcher.find('.popimg-prev').animate({left: 0}, 200);
+                }else{
+                    dominstance.switcher.find('.popimg-prev').animate({left: 0}, 200);
+                    dominstance.switcher.find('.popimg-next').animate({right: 0}, 200);
                 }
 
                 $('.modal_content>.popimg-list', dominstance.modal).removeAttr('style')
