@@ -2,7 +2,7 @@
 %~d0
 cd %~dp0
 cd ../
-fis3 release -w -c -d ./dist
+fis3 release -w -c -d ./
 
 
  
