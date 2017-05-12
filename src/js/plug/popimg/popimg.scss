@@ -15,7 +15,7 @@
   }
 
   .popimg-loader{
-    display: block;
+    display: none;
     position: fixed;
     top: 50%;
     left: 50%;
@@ -55,11 +55,14 @@
         }
         &.fade-out{
             opacity: 0!important;
-            transition: opacity .28s ease;
+            transition: opacity .1s ease;
         }
-        &.animate-in{
+        &.animate-in-delay{
             opacity: 1;
             transition-delay: .5s;
+        }
+        &.animate-in{
+          opacity: 1;
         }
         .modal_content{
             position: relative;

@@ -98,6 +98,7 @@ window.popimg = (function () {
         loadImg: function (src) {
             var dfd = $.Deferred();
             var img = new Image();
+            dominstance.overlay.siblings('.popimg-loader').show();
             img.src = src;
             img.onload = function () {
                 imgData[currentIdx].width = img.width;
@@ -105,9 +106,11 @@ window.popimg = (function () {
                 imgData[currentIdx].aspect_ratio = img.width / img.height;
                 imgData[currentIdx].error = false;
                 popimage.computePosition();
+                dominstance.overlay.siblings('.popimg-loader').hide();
                 dfd.resolve();
             };
             img.onerror = function () {
+                dominstance.overlay.siblings('.popimg-loader').hide();
                 dfd.reject();
             };
             return dfd;
@@ -118,7 +121,7 @@ window.popimg = (function () {
             });
             $('body').removeClass('popimg-show');
             dominstance.modal.addClass('animate-out').delay(400)
-                    .removeClass('animate-in');
+                    .removeClass('animate-in animate-in-delay');
 
             setTimeout(function () {
                 popimage.resetDom();
@@ -148,16 +151,15 @@ window.popimg = (function () {
                     dominstance.switcher.fadeIn();
                     popimage.switchImg(0);
                 }
-                popimage.settleImage();
+                // popimage.settleImage();
             });
-            // 通过在body上添加类实现显示
         },
         switchImg: function (space) {
             // 防止快速点击
             if (animateTimer) {
                 return false;
             }
-            dominstance.modal.removeClass('animate-in').addClass('fade-out');
+            dominstance.modal.removeClass('animate-in-delay animate-in').addClass('fade-out');
             // 保证动画执行完毕
             animateTimer = setTimeout(function () {
                 currentIdx = currentIdx + space;
@@ -177,9 +179,9 @@ window.popimg = (function () {
 
                 $('.modal_content>.popimg-list', dominstance.modal).removeAttr('style')
                         .removeClass('popimg-in');
-                popimage.settleImage();
+                popimage.settleImage(space);
                 animateTimer = null;
-            }, 250);
+            }, 100);
         },
         settleData: {
             "StringString": function (data, cbk) {
@@ -209,9 +211,14 @@ window.popimg = (function () {
             }
 
         },
-        settleImage: function () {
+        settleImage: function (space) {
             popimage.loadImg(imgData[currentIdx].src).then(function () {
-                dominstance.modal.show(0).removeClass('fade-out').addClass('animate-in');
+                if(space === 0){
+                    // 首次显示带延迟动画
+                    dominstance.modal.show(0).removeClass('fade-out').addClass('animate-in-delay');
+                }else{
+                    dominstance.modal.show(0).removeClass('fade-out').addClass('animate-in');
+                }
                 $('.modal_content>img', dominstance.modal).remove();
                 $('.modal_content', dominstance.modal).append('<img src="' + imgData[currentIdx].src + '"/>');
             }, function () {
