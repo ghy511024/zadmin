@@ -1,18 +1,45 @@
 .popimg-panel{
-    .popimg-overlay{
-        display: none;
-        position: fixed;
-        width: 100%;
-        height: 100%;
-        z-index: 100;
-        background: #000;
-        opacity: 0;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
-        transition: all .35s ease-in-out;
+  .popimg-overlay{
+      display: none;
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      z-index: 100;
+      background: #000;
+      opacity: 0;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      transition: all .35s ease-in-out;
+  }
+
+  .popimg-loader{
+    display: block;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 50px;
+    height: 50px;
+    margin-top: -25px;
+    margin-left: -25px;
+    z-index: 101;
+
+    &:before{
+      content:'';
+      position:absolute;
+      top:calc(50% - 25px);
+      left:calc(50% - 25px);
+      width:50px;
+      height:50px;
+      border-radius:50%;
+      border-top:2px solid #55C594;
+      border-left:2px solid #55C594;
+      border-right:2px solid #55C594;
+      border-bottom:2px solid transparent;
+      animation:.8s rotate infinite linear normal;
     }
+  }
 
   .popimg-modal{
     display: none;
@@ -34,7 +61,6 @@
             opacity: 1;
             transition-delay: .5s;
         }
-
         .modal_content{
             position: relative;
             width: 100%;
@@ -145,4 +171,10 @@
 
 .popimg-show .popimg-overlay{
     opacity: .85;
+}
+
+@keyframes rotate {
+  to {
+    transform: rotate(360deg)
+  }
 }
