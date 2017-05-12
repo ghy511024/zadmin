@@ -71,18 +71,17 @@ window.popimg = (function () {
 
 //=========对外提供通用class 绑定事件
             $(document).on('click', ".popimg", function (evt) {
-                var imgs = $(this).attr("imgs");
+                var imgs = $(this).attr("data-imgs");
                 var array = null;
-                if (!Ut.Null(imgs)) {
+                if (imgs != null && imgs.length > 0) {
                     array = imgs.split(",");
-                    popimage.showImage(array)
                 } else {
                     var value = $(this).html();
-                    if (!Ut.Null(value) && Ut.isURL(value)) {
+                    if (value != null && value.length > 0 && /(http[s]?|ftp):\/\/[^\/\.]+?\..+(\w|\/)$/i.test(value)) {
                         array = value;
                     }
                 }
-                if (!Ut.Null(array)) {
+                if (array != null && array.length > 0) {
                     popimage.showImage(array);
                 }
             })
