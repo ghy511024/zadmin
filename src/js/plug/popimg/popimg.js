@@ -152,6 +152,9 @@ window.popimg = (function () {
                     dominstance.switcher.fadeIn();
                     popimage.switchImg(0);
                 }
+                if(imgData.length === 0){
+                    return false;
+                }
                 // popimage.settleImage();
             });
         },
@@ -198,15 +201,18 @@ window.popimg = (function () {
             "ArrayString": function (data, cbk) {
                 // 传入的是一个数组，每个数组元素是路径
                 for (var i = 0, len = data.length; i < len; i++) {
-                    imgData.push({src: data[i]});
+                    if(data[i] && data[i].length > 0){
+                        imgData.push({src: data[i]});
+                    }
                 }
-                console.log(imgData);
                 cbk();
             },
             "ArrayObject": function (data, cbk) {
                 // 传入的是一个数组，每个数组元素是路径
                 for (var i = 0, len = data.length; i < len; i++) {
-                    imgData.push(data[i]);
+                    if(data[i].src && data[i].src.length > 0){
+                        imgData.push(data[i]);
+                    }
                 }
                 cbk();
             }
