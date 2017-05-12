@@ -11,5 +11,9 @@
                 <img src="" />
             </div>
         </div>
+        <div class="popimg-switcher-row">
+            <i class="popimg-switcher popimg-prev">&lt;</i>
+            <i class="popimg-switcher popimg-next">&gt;</i>
+        </div>
     </div>
 </tmplate>

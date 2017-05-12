@@ -41,7 +41,7 @@
 .popimg-panel .popimg-modal {
   display: none;
   position: fixed;
-  z-index: 101;
+  z-index: 102;
   -webkit-transition: opacity .8s ease, scale .8s ease;
   transition: opacity .8s ease, scale .8s ease;
   opacity: 0;
@@ -54,6 +54,12 @@
   opacity: 0;
   -webkit-transition: all 0.28s cubic-bezier(0.4, 0, 1, 1);
   transition: all 0.28s cubic-bezier(0.4, 0, 1, 1);
+}
+
+.popimg-panel .popimg-modal.fade-out {
+  opacity: 0 !important;
+  -webkit-transition: opacity .28s ease;
+  transition: opacity .28s ease;
 }
 
 .popimg-panel .popimg-modal.animate-in {
@@ -133,6 +139,47 @@
   -webkit-transition-delay: .4s;
           transition-delay: .4s;
   opacity: 1;
+}
+
+.popimg-panel .popimg-switcher-row {
+  display: none;
+  position: fixed;
+  z-index: 101;
+  width: 100%;
+  height: 60px;
+  left: 0;
+  top: 50%;
+  margin-top: -30px;
+}
+
+.popimg-panel .popimg-switcher-row .popimg-switcher {
+  font-style: normal;
+  width: 54px;
+  height: 60px;
+  line-height: 60px;
+  display: inline-block;
+  background-color: rgba(255, 255, 255, 0.3);
+  cursor: pointer;
+  font-size: 30px;
+  font-weight: bold;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.8);
+  position: absolute;
+  -webkit-transition: all .3s ease-in-out;
+  transition: all .3s ease-in-out;
+  border-radius: 2px;
+}
+
+.popimg-panel .popimg-switcher-row .popimg-switcher.popimg-prev {
+  left: 0;
+}
+
+.popimg-panel .popimg-switcher-row .popimg-switcher.popimg-next {
+  right: 0;
+}
+
+.popimg-panel .popimg-switcher-row .popimg-switcher:hover {
+  background-color: rgba(255, 255, 255, 0.5);
 }
 
 .popimg-show .popimg-overlay {
