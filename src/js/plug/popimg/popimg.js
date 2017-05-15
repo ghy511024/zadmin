@@ -88,7 +88,7 @@ window.popimg = (function () {
 
         },
         resetDom: function () {
-            dominstance.modal.removeClass('animate-out animate-in');
+            dominstance.modal.removeClass('animate-out animate-in').hide();
             dominstance.overlay.removeAttr('style').hide();
             dominstance.switcher.hide().find('*').removeAttr('style');
             $('body').removeClass('popimg-show');
@@ -271,7 +271,6 @@ window.popimg = (function () {
         }
     };
     popimage.init();
-
     return {
         showImage: popimage.showImage
     };
