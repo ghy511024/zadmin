@@ -138,6 +138,7 @@
         left: 0;
         top: 50%;
         margin-top:-25px;
+        transition: all .25s ease-in-out;
 
         .popimg-switcher{
             font-style: normal;
@@ -151,20 +152,24 @@
             text-align: center;
             color: rgba(255, 255, 255, .6);
             position: absolute;
-            transition: all .3s ease-in-out;
-
+            transition: all .25s ease-in-out;
+            border-radius: 4px;
             &.popimg-prev{
                 left: -100%;
-                border-radius: 0 2px 2px 0;
             }
 
             &.popimg-next{
                 right: -100%;
-                border-radius: 2px 0 0 2px;
             }
         }
         .popimg-switcher:hover{
              background: rgba(176,174,174,.3);
+        }
+
+        &.popimg-center{
+          .popimg-switcher{
+            left: 50%;
+          }
         }
     }
 

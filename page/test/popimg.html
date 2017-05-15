@@ -277,9 +277,9 @@ window.popimg = (function () {
         },
         computePosition: function () {
             var w = $(window).width(),
-                    h = $(window).height(),
-                    setW = Math.min(w - config.spacing * 2, imgData[currentIdx].width),
-                    setH = Math.min(h - config.spacing * 2, imgData[currentIdx].height);
+                h = $(window).height(),
+                setW = Math.min(w - config.spacing * 2, imgData[currentIdx].width),
+                setH = Math.min(h - config.spacing * 2, imgData[currentIdx].height);
             // 防止图片变形
             if (setW / setH < imgData[currentIdx].aspect_ratio) {
                 // 宽度被拉伸
@@ -293,6 +293,14 @@ window.popimg = (function () {
                 width: setW,
                 height: setH
             });
+            // 判断切换按钮位置
+            if(w - setW <= 400){
+                // 设置到图片两侧
+                dominstance.switcher.css({'width': setW+100+'px', 'left': '50%', 'margin-left': -(setW+100)/2+'px'});
+            }else{
+                // 设置到屏幕两侧
+                dominstance.switcher.css({'width': '100%', 'left': 0, 'margin-left': 0});
+            }
         },
         getInstance: function () {
             return dominstance ? dominstance : dominstance = popimage.initDom();
