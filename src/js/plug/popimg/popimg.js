@@ -88,7 +88,8 @@ window.popimg = (function () {
 
         },
         resetDom: function () {
-            dominstance.modal.removeClass('animate-out animate-in').hide();
+            dominstance.overlay.parent().css('opacity', 1);
+            dominstance.modal.removeClass('animate-out animate-in animate-in-delay').hide();
             dominstance.overlay.removeAttr('style').hide();
             dominstance.switcher.hide().find('*').removeAttr('style');
             $('body').removeClass('popimg-show');
@@ -116,16 +117,12 @@ window.popimg = (function () {
             return dfd;
         },
         hide: function () {
-            dominstance.overlay.animate({opacity: 0}, 100, function () {
-                $(this).hide();
-            });
-            $('body').removeClass('popimg-show');
-            dominstance.modal.addClass('animate-out').delay(400)
-                    .removeClass('animate-in animate-in-delay');
-
-            setTimeout(function () {
+            // $('body').removeClass('popimg-show');
+            // dominstance.modal.addClass('animate-out')
+            //         .removeClass('animate-in animate-in-delay');
+            dominstance.overlay.parent().animate({opacity: 0}, 300, "swing", function(){
                 popimage.resetDom();
-            }, 800);
+            });
         },
         showImage: function (data) {
             // 检查是否已经初始化
@@ -228,12 +225,15 @@ window.popimg = (function () {
         },
         settleImage: function (space) {
             popimage.loadImg(imgData[currentIdx].src).then(function () {
-                if(space === 0){
-                    // 首次显示带延迟动画
-                    dominstance.modal.show().removeClass('fade-out').addClass('animate-in-delay');
-                }else{
-                    dominstance.modal.show().removeClass('fade-out').addClass('animate-in');
-                }
+                dominstance.modal.removeClass('fade-out').show()
+                           .delay(500)
+                           .queue(function(){
+                               $(this).addClass('animate-in');
+                               if(!space){
+                                   $(this).addClass('animate-in-delay')
+                               }
+                               $(this).dequeue();
+                           }) ;
                 $('.modal_content>img', dominstance.modal).remove();
                 $('.modal_content', dominstance.modal).append('<img src="' + imgData[currentIdx].src + '"/>');
             }, function () {
