@@ -47,6 +47,7 @@
         z-index: 102;
         transition: opacity .8s ease, scale .8s ease;
         opacity: 0;
+        overflow: visible!important;
 
         &.animate-out{
             transform: scale(5);

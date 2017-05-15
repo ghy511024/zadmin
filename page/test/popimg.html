@@ -65,7 +65,7 @@ window.popimg = (function () {
             // -resize
             $(window).on('resize', function () {
                 // 触发图片宽高计算方法
-                popimage.computePosition();
+                dominstance && popimage.computePosition();
             });
             var popClass = "popimg-modal";
 
@@ -83,8 +83,8 @@ window.popimg = (function () {
             });
             // 展示详情
             $(document).on('click', "." + popClass + " .popimg-detail", function (evt) {
-                if ($('.' + popClass + '.modal_content>.popimg-list').hasClass('popimg-in')) {
-                    $('.' + popClass + '.modal_content>.popimg-list').removeClass('popimg-in').delay(300).animate({top: '-100%'}, 200);
+                if ( $('.' + popClass + ' .modal_content>.popimg-list').hasClass('popimg-in')) {
+                    $('.' + popClass + ' .modal_content>.popimg-list').removeClass('popimg-in').delay(300).animate({top: '-100%'}, 200);
                     return false;
                 }
                 var data = config.beforeShowDetail() || imgData[currentIdx],
@@ -94,7 +94,7 @@ window.popimg = (function () {
                         tpl += '<li>' + i + ': ' + data[i] + '</li>';
                     }
                 }
-                $('.' + popClass + '.modal_content>.popimg-list').html(tpl).animate({top: 0}, 400).addClass('popimg-in');
+                $('.' + popClass + ' .modal_content>.popimg-list').html(tpl).animate({top: 0}, 400).addClass('popimg-in');
             });
 
 //=========对外提供通用class 绑定事件
@@ -182,7 +182,7 @@ window.popimg = (function () {
                 if(imgData.length === 0){
                     return false;
                 }
-                // popimage.settleImage();
+                popimage.settleImage();
             });
         },
         switchImg: function (space) {
@@ -198,14 +198,14 @@ window.popimg = (function () {
                 // currentIdx = currentIdx >= imgData.length ? 0 : currentIdx;
                 // currentIdx = currentIdx < 0 ? imgData.length-1 : currentIdx;
                 if (currentIdx <= 0) {
-                    dominstance.switcher.find('.popimg-prev').animate({left: '-100%'}, 200);
-                    dominstance.switcher.find('.popimg-next').animate({right: 0}, 200);
+                    dominstance.switcher.find('.popimg-prev').animate({left: '-100%'}, 350);
+                    dominstance.switcher.find('.popimg-next').animate({right: 0}, 350);
                 } else if (currentIdx >= imgData.length - 1) {
-                    dominstance.switcher.find('.popimg-next').animate({right: '-100%'}, 200);
-                    dominstance.switcher.find('.popimg-prev').animate({left: 0}, 200);
+                    dominstance.switcher.find('.popimg-next').animate({right: '-100%'}, 350);
+                    dominstance.switcher.find('.popimg-prev').animate({left: 0}, 350);
                 } else {
-                    dominstance.switcher.find('.popimg-prev').animate({left: 0}, 200);
-                    dominstance.switcher.find('.popimg-next').animate({right: 0}, 200);
+                    dominstance.switcher.find('.popimg-prev').animate({left: 0}, 350);
+                    dominstance.switcher.find('.popimg-next').animate({right: 0}, 350);
                 }
 
                 $('.modal_content>.popimg-list', dominstance.modal).removeAttr('style')
@@ -226,6 +226,15 @@ window.popimg = (function () {
                 cbk();
             },
             "ArrayString": function (data, cbk) {
+                // 传入的是一个数组，每个数组元素是路径
+                for (var i = 0, len = data.length; i < len; i++) {
+                    if(data[i].length > 0){
+                        imgData.push({src: data[i]});
+                    }
+                }
+                cbk();
+            },
+            "ArrayUndefined": function (data, cbk) {
                 // 传入的是一个数组，每个数组元素是路径
                 for (var i = 0, len = data.length; i < len; i++) {
                     if(data[i] && data[i].length > 0){
