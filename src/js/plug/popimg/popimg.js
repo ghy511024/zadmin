@@ -230,9 +230,9 @@ window.popimg = (function () {
             popimage.loadImg(imgData[currentIdx].src).then(function () {
                 if(space === 0){
                     // 首次显示带延迟动画
-                    dominstance.modal.show(0).removeClass('fade-out').addClass('animate-in-delay');
+                    dominstance.modal.show().removeClass('fade-out').addClass('animate-in-delay');
                 }else{
-                    dominstance.modal.show(0).removeClass('fade-out').addClass('animate-in');
+                    dominstance.modal.show().removeClass('fade-out').addClass('animate-in');
                 }
                 $('.modal_content>img', dominstance.modal).remove();
                 $('.modal_content', dominstance.modal).append('<img src="' + imgData[currentIdx].src + '"/>');
