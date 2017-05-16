@@ -294,9 +294,9 @@ window.popimg = (function () {
                 height: setH
             });
             // 判断切换按钮位置
-            if(w - setW <= 400){
+            if(w - setW > 400){
                 // 设置到图片两侧
-                dominstance.switcher.css({'width': setW+100+'px', 'left': '50%', 'margin-left': -(setW+100)/2+'px'});
+                dominstance.switcher.css({'width': setW+165+'px', 'left': '50%', 'margin-left': -(setW+165)/2+'px'});
             }else{
                 // 设置到屏幕两侧
                 dominstance.switcher.css({'width': '100%', 'left': 0, 'margin-left': 0});
@@ -316,7 +316,7 @@ window.popimg = (function () {
         <script type="text/javascript">
             $(function () {
                 $(".preview-photo").click(function () {
-                    popimg.showImage(["http://fengyun-bar.b0.upaiyun.com/1470742916289691.jpg", "", "http://fengyun-bar.b0.upaiyun.com/1466154941487481.jpg"]);
+                    popimg.showImage(["http://fengyun-bar.b0.upaiyun.com/1470742916289691.jpg", "http://sc2.hao123img.com/data/385ade9e2382e83ae549b92af15e6833", "http://fengyun-bar.b0.upaiyun.com/1466154941487481.jpg"]);
                 })
 
             });

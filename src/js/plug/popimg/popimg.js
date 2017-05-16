@@ -266,9 +266,9 @@ window.popimg = (function () {
                 height: setH
             });
             // 判断切换按钮位置
-            if(w - setW <= 400){
+            if(w - setW > 400){
                 // 设置到图片两侧
-                dominstance.switcher.css({'width': setW+100+'px', 'left': '50%', 'margin-left': -(setW+100)/2+'px'});
+                dominstance.switcher.css({'width': setW+165+'px', 'left': '50%', 'margin-left': -(setW+165)/2+'px'});
             }else{
                 // 设置到屏幕两侧
                 dominstance.switcher.css({'width': '100%', 'left': 0, 'margin-left': 0});
