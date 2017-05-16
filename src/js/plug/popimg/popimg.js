@@ -55,7 +55,7 @@ window.popimg = (function () {
             });
             // 展示详情
             $(document).on('click', "." + popClass + " .popimg-detail", function (evt) {
-                if ( $('.' + popClass + ' .modal_content>.popimg-list').hasClass('popimg-in')) {
+                if ($('.' + popClass + ' .modal_content>.popimg-list').hasClass('popimg-in')) {
                     $('.' + popClass + ' .modal_content>.popimg-list').removeClass('popimg-in').delay(300).animate({top: '-100%'}, 200);
                     return false;
                 }
@@ -117,10 +117,7 @@ window.popimg = (function () {
             return dfd;
         },
         hide: function () {
-            // $('body').removeClass('popimg-show');
-            // dominstance.modal.addClass('animate-out')
-            //         .removeClass('animate-in animate-in-delay');
-            dominstance.overlay.parent().animate({opacity: 0}, 300, "swing", function(){
+            dominstance.overlay.parent().animate({opacity: 0}, 300, "swing", function () {
                 popimage.resetDom();
             });
         },
@@ -148,7 +145,7 @@ window.popimg = (function () {
                     dominstance.switcher.fadeIn();
                     popimage.switchImg(0);
                 }
-                if(imgData.length === 0){
+                if (imgData.length === 0) {
                     return false;
                 }
                 popimage.settleImage();
@@ -197,7 +194,7 @@ window.popimg = (function () {
             "ArrayString": function (data, cbk) {
                 // 传入的是一个数组，每个数组元素是路径
                 for (var i = 0, len = data.length; i < len; i++) {
-                    if(data[i].length > 0){
+                    if (data[i].length > 0) {
                         imgData.push({src: data[i]});
                     }
                 }
@@ -206,7 +203,7 @@ window.popimg = (function () {
             "ArrayUndefined": function (data, cbk) {
                 // 传入的是一个数组，每个数组元素是路径
                 for (var i = 0, len = data.length; i < len; i++) {
-                    if(data[i] && data[i].length > 0){
+                    if (data[i] && data[i].length > 0) {
                         imgData.push({src: data[i]});
                     }
                 }
@@ -215,7 +212,7 @@ window.popimg = (function () {
             "ArrayObject": function (data, cbk) {
                 // 传入的是一个数组，每个数组元素是路径
                 for (var i = 0, len = data.length; i < len; i++) {
-                    if(data[i].src && data[i].src.length > 0){
+                    if (data[i].src && data[i].src.length > 0) {
                         imgData.push(data[i]);
                     }
                 }
@@ -226,14 +223,14 @@ window.popimg = (function () {
         settleImage: function (space) {
             popimage.loadImg(imgData[currentIdx].src).then(function () {
                 dominstance.modal.removeClass('fade-out').show()
-                           .delay(500)
-                           .queue(function(){
-                               $(this).addClass('animate-in');
-                               if(!space){
-                                   $(this).addClass('animate-in-delay')
-                               }
-                               $(this).dequeue();
-                           }) ;
+                        .delay(500)
+                        .queue(function () {
+                            $(this).addClass('animate-in');
+                            if (!space) {
+                                $(this).addClass('animate-in-delay')
+                            }
+                            $(this).dequeue();
+                        });
                 $('.modal_content>img', dominstance.modal).remove();
                 $('.modal_content', dominstance.modal).append('<img src="' + imgData[currentIdx].src + '"/>');
             }, function () {
@@ -249,9 +246,9 @@ window.popimg = (function () {
         },
         computePosition: function () {
             var w = $(window).width(),
-                h = $(window).height(),
-                setW = Math.min(w - config.spacing * 2, imgData[currentIdx].width),
-                setH = Math.min(h - config.spacing * 2, imgData[currentIdx].height);
+                    h = $(window).height(),
+                    setW = Math.min(w - config.spacing * 2, imgData[currentIdx].width),
+                    setH = Math.min(h - config.spacing * 2, imgData[currentIdx].height);
             // 防止图片变形
             if (setW / setH < imgData[currentIdx].aspect_ratio) {
                 // 宽度被拉伸
@@ -266,10 +263,10 @@ window.popimg = (function () {
                 height: setH
             });
             // 判断切换按钮位置
-            if(w - setW <= 400){
+            if (w - setW <= 400) {
                 // 设置到图片两侧
-                dominstance.switcher.css({'width': setW+100+'px', 'left': '50%', 'margin-left': -(setW+100)/2+'px'});
-            }else{
+                dominstance.switcher.css({'width': setW + 100 + 'px', 'left': '50%', 'margin-left': -(setW + 100) / 2 + 'px'});
+            } else {
                 // 设置到屏幕两侧
                 dominstance.switcher.css({'width': '100%', 'left': 0, 'margin-left': 0});
             }
