@@ -156,6 +156,7 @@ window.popimg = (function () {
             if (animateTimer) {
                 return false;
             }
+            var w = $(window).width();
             dominstance.modal.removeClass('animate-in-delay animate-in').addClass('fade-out');
             // 保证动画执行完毕
             animateTimer = setTimeout(function () {
