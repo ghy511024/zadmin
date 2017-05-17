@@ -27,7 +27,13 @@ window.Admins = (function (ZA) {
                     "sScrollX": "100%",
                     "sScrollXInner": "100%"
                 });
-            }, 500)
+                $('#table10').length && $('#table10').dataTable({
+                    "iDisplayLength": 10,
+                    "aLengthMenu": [[10, 20, 50, 100], [10, 20, 50, 100]],
+                    "sScrollX": "100%",
+                    "sScrollXInner": "100%"
+                });
+            }, 300)
         },
         timePicker: function () {
             $(".time").each(function () {
