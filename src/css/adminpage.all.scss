@@ -2,6 +2,7 @@
 @import "bootstrap/bootstrap3.5";
 @import "font/font";
 @import "weight/search";
+@import "weight/mdstyle";
 @import "../js/plug/popimg/popimg";
 body{  
     font-size: 12px;
@@ -11,9 +12,11 @@ body{
     background-color: #ffffff;
 
 }
-ul,ul li{  list-style: none;
+ul,ul li{
+    list-style: none;
            padding: 0px;
-           margin: 0px;}
+           margin: 0px;
+}
 *, *:before, *:after {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;

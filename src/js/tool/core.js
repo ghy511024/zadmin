@@ -27,12 +27,18 @@ window.Admins = (function (ZA) {
                     "sScrollX": "100%",
                     "sScrollXInner": "100%"
                 });
-                $('#table10').length && $('#table10').dataTable({
-                    "iDisplayLength": 10,
-                    "aLengthMenu": [[10, 20, 50, 100], [10, 20, 50, 100]],
-                    "sScrollX": "100%",
-                    "sScrollXInner": "100%"
-                });
+                if ($('#zytable').length) {
+                    var data = {
+                        "iDisplayLength": 100
+                    }
+                    var hidepage = $('#zytable').attr("hidepage");
+                    var len = Number($('#zytable').attr("len")) || 100;
+                    if (hidepage == "true") {
+                        data["paging"] = false
+                    }
+                    data["iDisplayLength"] = len
+                    $('#zytable').dataTable(data);
+                }
             }, 300)
         },
         timePicker: function () {
@@ -365,7 +371,7 @@ window.Admins = (function (ZA) {
                     }
                 }
             }
-            console.log(JSON.stringify(this.map));
+//            console.log(JSON.stringify(this.map));
         },
         getSearch: function (skey) {
             if (skey == null || skey.length == 0) {
@@ -381,7 +387,7 @@ window.Admins = (function (ZA) {
                     ret.push(obj);
                 }
             }
-            console.log(ret)
+//            console.log(ret)
             return ret;
         },
         renderDom: function (value) {

@@ -91,7 +91,12 @@ window.popimg = (function () {
                         tpl = '';
                 for (var i in data) {
                     if (i !== 'error') {
-                        tpl += '<li>' + i + ': ' + data[i] + '</li>';
+                        if (i == "src") {
+                            tpl += '<li>' + data[i] + '</li>';
+                        } else {
+                            tpl += '<li>' + i + ': ' + data[i] + '</li>';
+                        }
+
                     }
                 }
                 $('.' + popClass + ' .modal_content>.popimg-list').html(tpl).animate({top: 0}, 400).addClass('popimg-in');
@@ -99,7 +104,7 @@ window.popimg = (function () {
 
 //=========对外提供通用class 绑定事件
             $(document).on('click', ".popimg", function (evt) {
-                var imgs = $(this).attr("data-imgs");
+                var imgs = $(this).attr("data-imgs") || $(this).attr("popimg");
                 var array = null;
                 if (imgs != null && imgs.length > 0) {
                     array = imgs.split(",");
@@ -184,6 +189,7 @@ window.popimg = (function () {
             if (animateTimer) {
                 return false;
             }
+            var w = $(window).width();
             dominstance.modal.removeClass('animate-in-delay animate-in').addClass('fade-out');
             // 保证动画执行完毕
             animateTimer = setTimeout(function () {
