@@ -1,0 +1,51 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 2017-5-19, 11:40:58
+    Author     : ghy
+*/
+
+body{  
+    font-size: 12px;
+    font-family: "Helvetica Neue", "Luxi Sans", "DejaVu Sans", Tahoma, "Hiragino Sans GB", STHeiti, "Microsoft YaHei";
+    line-height: 1.428571429;
+    color: #333333;
+    background-color: #ffffff;
+}
+*, *:before, *:after {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.clear {*zoom: 1;&:after{content: "";display: table;clear: both;}}
+.els{ white-space:nowrap; text-overflow:ellipsis;  overflow:hidden; }
+
+ul,ul li{  
+    list-style: none;
+    padding: 0px ;
+    margin: 0px;
+}
+
+/*table*/
+table,.table,#table{
+    font-size:12px;
+    thead,tbody{
+        th,tr td{
+            padding: 4px;
+            vertical-align: middle;
+        }
+    }
+}
+/*form*/
+input[type="text"],select{
+    height: 28px;
+    border-radius: 0px;
+    padding:4px 6px;
+    -webkit-transition: none;
+    transition: none;
+    font-size: 12px;
+    border: 1px solid #ccc;
+}

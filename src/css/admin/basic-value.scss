@@ -1,0 +1,41 @@
+@charset "UTF-8";
+@import "lib";
+.max10{ @include els() max-width:10px;}
+.max20{ @include els()max-width: 20px;}
+.max30{ @include els() max-width: 30px;}
+.max50{ @include els() max-width: 50px;}
+.max80{ @include els() max-width: 80px;}
+.max100{ @include els() max-width: 100px;}
+.max200{ @include els() max-width: 200px;}
+.max300{ @include els() max-width: 300px;}
+.max400{ @include els() max-width: 400px;}
+.max500{ @include els() max-width: 500px;}
+.max600{ @include els() max-width: 600px;}
+.max700{ @include els() max-width: 700px;}
+.max800{ @include els() max-width: 800px;}
+
+.mt10{margin-top:10px}
+.mt20{margin-top:20px}
+.mt50{margin-top:50px}
+.mt100{margin-top:100px}
+.mt200{margin-top:200px}
+
+
+.btn{
+    font-size: 12px;
+    border-radius: 0px;
+    padding: 5px 16px;
+    height: 26px;
+    line-height: 14px;
+}
+.small-btn{
+    padding: 0px 3px;
+    line-height: 12px;
+    height: 16px;
+}
+.fleft{
+    float:left !important;
+}
+.fright{
+    float: right !important;
+}

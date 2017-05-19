@@ -5,8 +5,10 @@ __inline("/src/js/tool/ftip.js");
 __inline("/src/js/tool/zalert.js");
 __inline("/src/js/form/imgajaxupload.js");
 __inline("/src/js/form/zform.js");
+__inline("/src/js/lib/jsptpl.js");
 __inline("/src/js/tool/maskimage.js");
-__inline("/src/js/tool/core.js");
+
+//__inline("/src/js/tool/core.js");
 __inline("/src/js/plug/popimg/popimg.js");
 
-//__inline("/lib/js/tool/coreV2.js");
+__inline("/src/js/core/coreV2.js");

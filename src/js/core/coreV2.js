@@ -4,6 +4,8 @@
  * @qq：249398279
  * @version v3.0
  * */
+
+__inline("nav/headnav.tpl");
 window.Admins = (function (ZA) {
     var admin = {
         navData: {},
@@ -84,15 +86,17 @@ window.Admins = (function (ZA) {
                 $(".nav-content").removeClass("active");
                 $("#" + _id).addClass("active");
             })
-            
-            
+
+            $(document).on("click", ".expand", function () {
+                $(".leftnav-wrap").toggleClass("show")
+            })
         },
         load: function () {
             if ($(".topbar").length == 0) {
                 if ((typeof AdminPage != "undefined") && AdminPage != null) {
-                    admin.cpage(AdminPage);
+//                    admin.cpage(AdminPage);
                     ZA.Search.cacheData(AdminPage);
-                    admin.cRightPage();
+
 
                 } else {
                     var url = window.CONF_URL;
@@ -107,112 +111,29 @@ window.Admins = (function (ZA) {
                         success: function (ret) {
                             ZA.navData = ret;
                             ZA.Search.cacheData(ret);
-                            admin.cpage(ret);
-                            Admins.cRightPage();
+                            var data = {}
+                            var cpage = admin.getCurrentPage(ret)
+
+                            data.headnav = ret; // 全部数据
+                            data.ctop = cpage["ctop"];// 当前top
+                            data.ctag = cpage["ctag"];// 当前ctag
+                            data.clink = cpage["clink"]; // 当前link
+
+                            data.tagnav = cpage["tagnav"];// 左侧导航数据
+                            data.linknav = cpage["linknav"];// 左侧导航数据
+
+                            var headstr = TPL.getTpl("admin-head");
+                            var headtmp = new jsptpl(headstr);
+                            var headstr_out = headtmp.render(data)
+
+                            var leftnavstr = TPL.getTpl("admin-leftnav");
+                            var leftnavtmp = new jsptpl(leftnavstr);
+                            var leftnavstr_out = leftnavtmp.render(data)
+                            $("body").append($(headstr_out));
+                            $("body").append($(leftnavstr_out));
+                            ZA.Search.init();//搜索组件初始化
                         }
                     })
-                }
-            }
-        },
-        cpage: function (data) {
-            //布局页面
-            if (data) {
-                //========读取变量============
-                var ctop = "";
-                var ctag = ""
-                var clink = ""
-                //检查配置
-                if (typeof AdminConf != "undefined") {
-                    ctop = AdminConf["top"];
-                    ctag = AdminConf["tag"];
-                    clink = AdminConf["link"];
-                }
-                else {
-                    var ret = admin.getCurrentPage(data)
-                    ctop = ret["ctop"];
-                    ctag = ret["ctag"];
-                    clink = ret["clink"];
-                }
-                //==========创建 导航框架=============
-                var topnav = zen("div.topbar>div.topbar-left.left-home>a>i.fa.fa-home.fa-3x");
-                var navbar = zen("div.topbar-left")
-                topnav.append(navbar);
-                if (window.HOME_LINK) {
-                    topnav.find("a").attr("href", window.HOME_LINK)
-                }
-                $("body").prepend(topnav);
-                //===============包裹 内容页面 ===================
-//                $("#content").wrap("<div class='main-content'><div class='content-inner left-content'><div class='content-body'></div></div></div>")
-                $("#content").wrap(zen("div.main-content>div.content-inner.left-content>div.content-body"))
-                //========一级导航=========
-                var mainContent = $(".main-content");
-                mainContent.zen("div.left-slide-bar>ul")
-                var leftSlide = mainContent.find(".left-slide-bar");
-                //========二级导航=========
-                var inner = $(".content-inner");
-                inner.zen("div.inner-slide-bar>div.list")
-                var innerSlide = inner.find(".inner-slide-bar");
-                //========添加页面=============
-                var topdata = null;
-                for (var i in data) {
-                    //===========添加导航链接==============
-                    var topitem = data[i]
-                    var name = topitem["name"];
-                    var url = topitem["url"];
-                    var navitem = $("<div><a href='" + url + "'><span></span></a></div>");
-                    navitem.addClass("topbar-nav-btn");
-                    navitem.find("a").attr("src", url);
-                    navitem.find("span").html(name);
-                    $(navbar).append(navitem);
-                    if (name == ctop) {
-                        topdata = topitem;
-                        navitem.addClass("active")
-                    }
-                    //=======添加悬浮提示导航=======
-                    var dropmenu = zen("div.dropdown-menu");
-                    var taglink = topitem["tag"] || [];
-
-                    for (var i = 0; i < taglink.length; i++) {
-                        var col = zen("div.topbar-nav-col>div.col-title+ul");
-                        var links = taglink[i]["links"] || [];
-                        for (var m = 0; m < links.length; m++) {
-                            var src = links[m]["url"];
-                            var name = links[m]["name"];
-                            var link = $("<li ><a href='" + src + "'>" + name + "</a></li>");
-                            $(col).find("ul").append(link);
-                        }
-                        $(col).find(".col-title").html(taglink[i].name);
-                        dropmenu.append(col);
-                    }
-                    navitem.append(dropmenu);
-                }
-                //=============添加一级导航 链接============
-                var tagdata = null;
-                if (topdata != null && topdata["tag"] != null) {
-                    for (var n = 0; n < topdata["tag"].length; n++) {
-                        var liitem = topdata["tag"][n]
-                        var li = $("<li><a href='" + liitem["url"] + "'>" + liitem["name"] + "</a></li>")
-                        leftSlide.find("ul").append(li)
-                        if (liitem["name"] == ctag) {
-                            li.addClass("active");
-                            tagdata = liitem;
-                        }
-                    }
-                }
-                //============添加二级导航 链接=============
-                if (tagdata != null && tagdata["links"] != null && tagdata["links"].length > 0) {
-                    var ul = $("<ul></ul>")
-                    var title = tagdata["title"] || name
-                    for (var i = 0; i < tagdata["links"].length; i++) {
-                        var linkitem = tagdata["links"][i];
-                        var link = $("<li><a href='" + linkitem["url"] + "'><div class='link'>" + linkitem["name"] + "</div></a></li>")
-                        ul.append(link)
-                        if (linkitem["name"] == clink) {
-                            link.find("a").addClass("current");
-                        }
-                    }
-                    innerSlide.find(".list").append(ul)
-                    innerSlide.append("<div class='title'>" + title + "</div>")
                 }
             }
         },
@@ -242,6 +163,8 @@ window.Admins = (function (ZA) {
                             clink = linkitem["name"];
                             ret["ctop"] = ctop
                             ret["ctag"] = ctag
+                            ret["tagnav"] = topdata["tag"]
+                            ret["linknav"] = tagdata["links"]
                             ret["clink"] = clink
                         }
                         else {
@@ -251,6 +174,8 @@ window.Admins = (function (ZA) {
                                         ctop = topdata["name"];
                                         ctag = tagdata["name"];
                                         clink = linkitem["name"];
+                                        ret["tagnav"] = topdata["tag"]
+                                        ret["linknav"] = tagdata["links"]
                                         ret["ctop"] = ctop
                                         ret["ctag"] = ctag
                                         ret["clink"] = clink
@@ -263,30 +188,7 @@ window.Admins = (function (ZA) {
                 }
             }
             return ret;
-        }, cRightPage: function () {
-            if (window.AdminRightPage) {
-                var r = zen("div.topbar-right")
-                for (var i in AdminRightPage) {
-                    var btn = zen("a.link")
-                    var name = AdminRightPage[i].name
-                    var url = AdminRightPage[i].url
-                    var cla = AdminRightPage[i].cla
-                    $(btn).html(name)
-                    if (url != null) {
-                        $(btn).attr("href", url);
-                    }
-                    $(btn).addClass(cla)
-                    $(r).append(btn)
-                }
-                //===搜索组件初始化====
-//                $(spanel).find(".search-result ul").append("<li>asdfasdf</li><li>asdfasdf</li>")
-                $(r).append(spanel)
-                $(".topbar").append($(r))
-            }
-            var spanel = zen("div.search-panel>input.search-ipt+div.search-result>ul")
-            $(".topbar").append($(spanel))
-            ZA.Search.init();//搜索组件初始化
-        }
+        },
     }
     var ret = {
         init: function () {
@@ -361,7 +263,6 @@ window.Admins = (function (ZA) {
                     }
                 }
             }
-            console.log(JSON.stringify(this.map));
         },
         getSearch: function (skey) {
             if (skey == null || skey.length == 0) {
@@ -377,7 +278,6 @@ window.Admins = (function (ZA) {
                     ret.push(obj);
                 }
             }
-            console.log(ret)
             return ret;
         },
         renderDom: function (value) {

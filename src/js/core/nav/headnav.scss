@@ -1,0 +1,209 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 2017-5-19, 13:54:51
+    Author     : ghy
+*/
+.topbar{
+    //顶部导航
+    $color1:#41A1BF;
+    $color2:#40505B;
+    /*$tb_color:#40505B;*/
+    $tb_color:#373d41;
+    $tb_img:linear-gradient(to bottom,#54436F 0,#40505B 100%);
+    $lb_color:#3B8686;
+    $lb_img:linear-gradient(75deg,#98598D 0,#577184 100%);
+    $lb2_color:#ECF0F1;
+    a{  text-decoration: none;}
+    position: fixed;
+    top:0px;
+    width:100%;
+    z-index: 101;
+    clear: both;
+    height: 50px;
+    background: $tb_color;
+    /*background-image: $tb_img;*/
+    font-size: 12px;
+    min-width: 1200px;
+    .topbar-left{
+        &.left-home{
+            width:50px;
+            a{
+                color: #fff;
+                background: url(http://static.ws.kukuplay.com/images/home_1.png);
+                background-size: contain;
+                display: block;
+                position: absolute;
+                width: 28px;
+                height: 28px;
+                left: 10px;
+                top: 10px;
+            }
+        }
+        height:100%;
+        float:left;
+    }
+    .topbar-right{
+        float: right;
+        line-height: 50px;
+        margin: 0px 20px;
+        .link{
+            color: #fff;
+            margin-left: 10px;
+            cursor: pointer;
+        }
+    }
+    .topbar-nav-btn{
+        padding: 0 20px;
+        height: 50px;
+        font-size: 14px;
+        color: #fff;
+        font-size: 14px;
+        line-height: 50px;
+        position:relative;
+        float:left;
+        border-right: 1px solid #2a2f32; 
+        a{
+            color: #fff;
+        }
+        &.active{
+            background: #2a2f32;
+            a{
+                color: #fff;
+            }
+        }
+        &:hover{
+            background: #2a2f32;
+            a{
+                color: #fff;
+            }
+            .dropdown-menu{
+                display:block;
+            }
+        }
+    }
+    .dropdown-menu{
+        border: none;
+        padding: 10px;
+        margin-top: 0;
+        white-space: nowrap;
+        border-radius: 0px;
+        .topbar-nav-col{
+            display: inline-block;
+            vertical-align: top;
+            padding: 0 10px;
+            .col-title{
+                color: #df1155;
+                border-bottom: 2px solid #df1155;
+                height: 24px;
+                line-height: 16px;
+                margin: 0px 10px;
+            }
+            ul{
+                li{
+                    min-width: 60px;
+                    height: 30px;
+                    line-height: 30px;
+                    margin-bottom: 2px;
+                    a{
+                        display: block;
+                        height: 100%;
+                        padding: 0 10px;
+                        text-decoration: none;
+                        color: #555555;
+                        font-size:12px;
+                        &:hover{
+                            background:#f2f2f2;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.leftnav-wrap{
+    transition: all ease-in-out 0.6s;
+    position:fixed;
+    top:50px;
+    bottom:0px;
+    width:180px;
+
+    /*background: #333744;*/
+
+    background:#2a2c33;
+    z-index: 100;
+    left:-180px;
+    .expand{
+        position:absolute;
+        right:-36px;
+        height: 36px;
+        width: 36px;
+        /*background: #373d41;*/
+        background: #2d3038;
+        cursor: pointer;
+        top: 0;
+        span{
+            display: block;
+            height: 2px;
+            width: 10px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin: -1px 0 0 -5px;
+            background: #fff;
+            transition: all 0.6s;
+            &.b1{
+                transform: rotate(90deg);
+                -webkit-transform: rotate(90deg);
+            }
+        }
+    }
+    &.show{
+        /*left:0px;*/
+        left:-90px;
+        .expand{
+            span{
+                &.b1{
+                    transform: rotate(0deg);
+                    -webkit-transform: rotate(0deg);
+                }
+            }
+        }
+    }
+
+    // 内容部分
+    .left-slide-bar{
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        bottom: 0px;
+        width: 50%;
+
+        &.slide-right{
+            left:50%;
+            background: #2d3038;
+        }
+        ul{
+            li{
+                height:36px;
+                text-align: center;
+                line-height:36px;
+                &:hover{
+                    background:  rgba(255,255,255,0.1)
+                }
+                &.active{
+                    /*background:  #42485B;*/
+                    background:  rgba(255,255,255,0.3)
+                }
+                a{
+                    color:#fff;
+                    text-decoration: none;
+                }
+            }
+        }
+    }
+}

@@ -34,6 +34,17 @@
                         "url": "/page/paging/paging.html"
                     }
                 ]
+            },
+             {
+                "name": "光速上手a",
+                "title": "上手指南",
+                "url": "/page/start.html",
+                "links": [
+                    {
+                        "name": "cdn 资源集合",
+                        "url": "/page/cdnlib.html"
+                    }
+                ]
             }
         ]
     },
