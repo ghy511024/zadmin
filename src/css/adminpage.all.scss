@@ -1,0 +1,241 @@
+@charset "UTF-8";
+
+@import "bootstrap/bootstrap3.5";
+@import "admin/basic-reset";
+@import "admin/basic-value";
+@import "admin/zform";
+@import "font/font";
+@import "weight/search";
+@import "../js/plug/popimg/popimg";// 图片弹窗
+@import "../js/core/nav/headnav";// 顶部导航
+
+
+table.dataTable {
+    margin-top: 0px !important;
+}
+
+
+.f12{font-size:12px;}
+.f14{font-size:14px;}
+.f16{font-size:16px;}
+//顶部导航
+$color1:#41A1BF;
+$color2:#40505B;
+$tb_color:#40505B;
+$tb_img:linear-gradient(to bottom,#54436F 0,#40505B 100%);
+$lb_color:#3B8686;
+$lb_img:linear-gradient(75deg,#98598D 0,#577184 100%);
+$lb2_color:#ECF0F1;
+
+//==========主要内容============
+.main-content{
+    a{  text-decoration: none;}
+    z-index:100;
+    position: absolute;
+    width: 100%;
+    top: 50px;
+    bottom: 0px;
+    background-color: #000;
+    .left-slide-bar{
+        width: 80px;
+        display: block;
+        position: fixed;
+        top: 50px;
+        bottom: 0px;
+        background: $lb_color;
+        background-image: $lb_img;
+        z-index: 102;
+        overflow-x: hidden;
+        ul{
+            li{
+                a{
+                    display: block;
+                    width: 100%;
+                    height: 40px;
+                    line-height: 40px;
+                    overflow: hidden;
+                    color:#fff;
+                    text-align:center;
+                    &:hover{
+                        color:#444444;
+                        background:$lb2_color;
+                    }
+                }
+                &.active{
+                    a{
+                        color:#444444;
+                        background: $lb2_color;
+                    }
+                }
+            }
+        }
+    }
+    .content-inner{
+        width: auto;
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        bottom: 0px;
+        right: 0px;
+        overflow: hidden;
+        background: #FFF;
+        &.left-content{
+            left:80px;
+        }
+    }
+    $in_w:96px;
+    .inner-slide-bar{
+        width: $in_w;
+        float: left;
+        background-color: #EAEDF1;
+        position: absolute;
+        top: 0px;
+        bottom: 0px;
+        z-index: 2;
+        overflow: hidden;
+        .title{
+            font-weight: bold;
+            width: $in_w;
+            height: 40px;
+            line-height: 40px;
+            background: #EAEDF1;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            text-align:center;
+            display:none;
+
+        }
+        .list{
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            right: 0px;
+            bottom: 0px;
+            overflow-y: auto;
+            overflow-x: hidden;
+            ul{
+                li{
+                    a{
+                        &.current,&:hover{
+                            background:#fff;
+                        }
+                        width:   $in_w;
+                        height: 40px;
+                        line-height: 40px;
+                        display: block;
+                        color: #333;
+                        text-align:center;
+                        .link{
+                            width:   $in_w;;
+                            float: left;
+                            overflow: hidden;
+                            text-overflow: ellipsis;
+                            white-space: nowrap;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    /*====================内容部分=================*/
+    .content-body{
+        position: absolute;
+        width: auto;
+        top: 0px;
+        bottom: 0px;
+        left: $in_w;
+        right: 0px;
+        overflow: hidden;
+        overflow-y: auto;
+        padding-bottom: 50px;
+        .right-content,#content{
+            margin:0px;
+        }
+    }
+}
+.right-content,#content{
+    margin:50px 30px 0px 50px;
+    .content-title,.ztitle{
+        padding: 10px 0px;
+        min-height: 50px;
+        border-bottom: 1px solid #DDD;
+        h5{
+            text-indent: 8px;
+            border-left: 2px solid #88B7E0;
+            display: inline-block;
+            margin-right: 8px;
+        }
+    }
+}
+.cond{
+    padding: 8px 0px;
+    border-bottom: 1px solid #ccc;
+}
+//===========自定义navbar==============
+.nav-tabs{
+    margin-top:20px;
+    >li{
+        margin-left: -1px;
+        border-top: 1px solid #ddd;
+        border-left: 1px solid #ddd;
+        border-right: 1px solid #ddd;
+        z-index: 1;
+        >a{
+            border: 1px solid transparent;
+            margin-right: 2px;
+            line-height: 1.428571429;
+            border-radius: 0px 0px 0px 0px;
+            color: #666;
+            padding: 10px 16px;
+            background: #FBFAF8;
+            border-left: 0px;
+            border-right: 0px;
+            border-bottom: 1px solid #FFF;
+            cursor:pointer;
+        }
+        &.active{
+            border-top: 0px;
+            border-left: 1px solid #ddd;
+            border-right: 1px solid #ddd;
+            z-index: 3;
+            a,a:hover{
+                border-top: 2px solid #00a2ca;
+                border-left: 0px;
+                border-right: 0px;
+                border-bottom: 1px solid #FFF;
+                color: #333;
+            }
+        }
+    }
+}
+.nav-tabs>li>a,.nav-tabs{border-color:#ddd}
+.nav-tabs>li{margin-left:-1px;border-top:1px solid #ddd;border-left:1px solid #ddd;border-right:1px solid #ddd;z-index:1}
+.nav-tabs>li>a,.nav-tabs>li>a:focus{color:#666;border-left:0px;border-right:0px;margin-right:0px;padding:10px 16px;background:#FBFAF8;border-bottom:0px}
+.nav-tabs>li.active{border-top:0px;border-left:1px solid #ddd;border-right:1px solid #ddd;z-index:3}
+.nav-tabs>li.active>a,.nav-tabs>li.active>a:hover,.nav-tabs>li.active>a:focus{border-top:2px solid #00a2ca;border-left:0px;border-right:0px;border-bottom:1px solid #FFF;color:#333}
+.nav-tabs>li>a:hover{background-color:#FFF;color:#09C}.nav-tabs .open>a,.nav-tabs .open>a:hover,.nav-tabs .open>a:focus{color:#000;background-color:#FAFAFA;border-color:#EEE}
+
+.nav-content{
+    display:none;
+    &.active{
+        display:block;
+    }
+}
+.blocka{
+    display: inline-block;
+}
+/*==============================表单=========================*/
+#table_wrapper{
+    label{margin-bottom:0px;}
+}
+.padding-bottom{padding-bottom:8px;border-bottom:1px solid #ccc;}
+
+.form-group,.form{
+    &.full{
+        width:100%;
+    }
+    .btn{
+        margin-top:-1px;
+    }
+}

@@ -1,0 +1,40 @@
+<link rel="stylesheet" href="http://static.ws.kukuplay.com/common/lib/bootstrap/v3.3.5/css/bootstrap.min.css"/>
+<link rel="stylesheet" href="http://static.ws.kukuplay.com/common/lib/jquery-ui/v1.8.21/jquery-ui.1.8.21.min.css"/>
+<link rel="stylesheet" href="http://static.ws.kukuplay.com/common/styles/dataTables.bootstrap.css"/>
+<!--自定义后端样式-->
+<link rel="stylesheet" href="/src/css/adminpage.all.scss"/>
+<link type="text/css" rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.11.0/styles/agate.min.css"/>
+
+<script type="text/javascript" src="https://cdn.bootcss.com/highlight.js/9.11.0/highlight.min.js"></script>
+<script  src="http://static.ws.kukuplay.com/common/lib/jquery/jquery-1.9.4.js"></script>
+<script  src="http://static.ws.kukuplay.com/common/lib/bootstrap/v3.3.5/js/bootstrap.min.js"></script>
+<!--日期控件-->
+<script  src="http://static.ws.kukuplay.com/common/lib/jquery-ui/v1.8.21/jquery-ui.1.8.21.min.js"></script>
+<script type="text/javascript" src="http://static.ws.kukuplay.com/common/date/jquery-ui-datetimepicker-zh-CN.js"></script>
+<!--数据表格库-->
+<script  src="http://static.ws.kukuplay.com/common/scripts/lib/jquery.dataTables.min.js"></script>
+<script  src="http://static.ws.kukuplay.com/common/scripts/lib/dataTables.bootstrap.js"></script>
+<!--后端底层库-->
+<!--<script src="http://static.ws.kukuplay.com/common/lib/zylib/v3.0/adminV4.js"></script>-->
+<script src="/src/js/zadmin.all.js"></script>
+<script src="main.js"></script>
+
+<script >
+    window.HOME_LINK = "/";
+    window.CONF_URL = "/mock/adminpage.json";
+    window.zadmin = (function (fun) {
+        var tmpfun = [];
+        admin = {
+            ready: function (fun) {
+                if (typeof fun === "function") {
+                    tmpfun.push(fun);
+                }
+            }, init: function () {
+                for (var i in tmpfun) {
+                    tmpfun[i]();
+                }
+            }
+        };
+        return admin;
+    })();
+</script>  

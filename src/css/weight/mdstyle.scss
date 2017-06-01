@@ -1,0 +1,75 @@
+/*
+基础样式设置，
+*/
+.blog{
+    font-size:14px;
+    .main{
+        margin-top:10px;
+    }
+    h1,h2,h3,h4,h5,h6{
+        color: #323232;
+        font-weight: 600;
+        position:relative;
+    }
+    *:first-child {
+        margin-top: 0;
+    }
+    h1{
+        font-size: 1.3em;
+        font-weight: 600;
+        margin: 24px 0 12px;
+        padding: 0 0 10px;
+        border-bottom: 1px solid #e7e9ed;
+        color: #313236;
+    }
+    h2{
+        font-size: 1.2em;
+        font-weight: 600;
+        margin: 24px 0 12px;
+        color: #313236;
+    }
+    h3{
+        margin: 24px 0 12px;
+        font-size: 18px;
+    }
+    h4{
+        margin: 24px 0 12px;
+        font-size: 16px;
+    }
+    h5{
+        margin: 24px 0 12px;
+        font-size: 14px;
+    }
+    pre{
+        background-color: #333;
+        color: #c5c8c6;
+        margin-bottom: 9px;
+        margin-top:10px;
+        code{
+            padding-top:0;
+            padding-bottom: 15px;
+            line-height: 1.6rem;
+        }
+    }
+    ul,ol{
+        padding: 0;
+        margin: 6px 0 6px 28px !important;
+        list-style-type:disc;
+        li{
+            color: #5c5d5e;
+            line-height: 1.6em;
+            margin-top:5px;
+            p{
+                margin-top:0px;
+            }
+        }
+    }
+    p{
+        color: #5c5d5e;
+        margin: 6px 0 0;
+
+    }
+    hr{
+        margin: 16px 0;
+    }
+}

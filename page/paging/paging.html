@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>后端分页控件</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="http://static.ws.kukuplay.com/common/lib/bootstrap/v3.3.5/css/bootstrap.min.css"/>
+<link rel="stylesheet" href="http://static.ws.kukuplay.com/common/lib/jquery-ui/v1.8.21/jquery-ui.1.8.21.min.css"/>
+<link rel="stylesheet" href="http://static.ws.kukuplay.com/common/styles/dataTables.bootstrap.css"/>
+<!--自定义后端样式-->
+<link rel="stylesheet" href="/dist/css/adminpage.all.css"/>
+<link type="text/css" rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.11.0/styles/agate.min.css"/>
+
+<script type="text/javascript" src="https://cdn.bootcss.com/highlight.js/9.11.0/highlight.min.js"></script>
+<script  src="http://static.ws.kukuplay.com/common/lib/jquery/jquery-1.9.4.js"></script>
+<script  src="http://static.ws.kukuplay.com/common/lib/bootstrap/v3.3.5/js/bootstrap.min.js"></script>
+<!--日期控件-->
+<script  src="http://static.ws.kukuplay.com/common/lib/jquery-ui/v1.8.21/jquery-ui.1.8.21.min.js"></script>
+<script type="text/javascript" src="http://static.ws.kukuplay.com/common/date/jquery-ui-datetimepicker-zh-CN.js"></script>
+<!--数据表格库-->
+<script  src="http://static.ws.kukuplay.com/common/scripts/lib/jquery.dataTables.min.js"></script>
+<script  src="http://static.ws.kukuplay.com/common/scripts/lib/dataTables.bootstrap.js"></script>
+<!--后端底层库-->
+<!--<script src="http://static.ws.kukuplay.com/common/lib/zylib/v3.0/adminV4.js"></script>-->
+<script src="/dist/zadmin.all.js"></script>
+<script src="/page/lib/main.js"></script>
+
+<script >
+    window.HOME_LINK = "/";
+    window.CONF_URL = "/mock/adminpage.json";
+    window.zadmin = (function (fun) {
+        var tmpfun = [];
+        admin = {
+            ready: function (fun) {
+                if (typeof fun === "function") {
+                    tmpfun.push(fun);
+                }
+            }, init: function () {
+                for (var i in tmpfun) {
+                    tmpfun[i]();
+                }
+            }
+        };
+        return admin;
+    })();
+</script>  
+    </head>
+    <body >
+        <div id="content" class="blog">
+            <div class="content-title">
+                <h5>后端分页控件</h5>
+            </div>
+            <div class="main" >
+                <h4>简介</h4>
+                <p>后端查询量比较大的页面需要改造为后端分页，大体需要有三个地方改造一下。后面的两个部分，算是一劳永逸的复制一次，以后拷贝就行了</p>
+                <ul>
+                    <li>1.后端提供数据的process类方法改造</li>
+                    <li>2.拷贝分页PageModelAndview类到项目中</li>
+                    <li>3.拷贝分页html的jsp文件到项目中</li>
+                </ul>
+                <h4>1.后端提供数据的process类方法改造</h4>
+                <p>提供数据的process类方法，必须支持两个条件参数的查询，1：开始位置，2：查询长度</p>
+                <pre>
+                    <code class="language">
+        int psize=100;// 一页数据长度
+        int p = Utils.parseInteger(request.getParameter("p"), 1);// 从参数中获取分页
+        int skip = (p - 1) * psize;// 计算起始位置
+        long s = Utils.parseLong(request.getParameter("s"), System.currentTimeMillis() - 1 * 86400000);// 查询开始时间
+        long e = Utils.parseLong(request.getParameter("e"), System.currentTimeMillis());// 查询结束时间
+
+        long count = MyBeanProcessor.getCount(s,e,null);//获取查询条件下的数据长度
+        List&lt;MyBean> list = MyBeanProcessor.getMyBeanList(s,e skip, p);// 获取查询条件下的数据
+        // 使用 分页的modelandview,代码在下一小节，复制拷贝即可
+        ModelAndView mv = new PageModelAndview("admin/xxx", p, count, psize);
+        mv.addObject("list", list);// 添加数据
+     
+</code>
+                </pre>
+                <h4>2.PageModelAndview类</h4>
+                <p>项目中新建一个 PageModelAndview 类，然后将下面代码拷贝过去即可（此类可以放在基础类文件夹下，方便管理）</p>
+                <pre>
+                    <code class="language">
+        package com.yuncheng.zyuser.modelandview;
+
+        import java.io.IOException;
+        import org.springframework.web.servlet.ModelAndView;
+
+        /**
+         *
+         * @desc 分页modelandview
+         * @param p 当前分页
+         * @param allsize 总条数
+         * @param pagesize 单页长度
+         */
+        public class PageModelAndview extends ModelAndView {
+
+            public PageModelAndview(String view, int p, long allsize, long pagesize) throws IOException {
+
+                super(view);
+
+                long showpage = 5;
+                long begin = 1;// 起始页面
+                long allpage = (allsize / pagesize);//总页数
+                long end = 1; // 结束页面
+                boolean before = false;
+                boolean next = false;
+                boolean haspage = true;
+                //计算起始页,结束页
+                if (allpage <= showpage) {
+                    begin = 1;
+                    end = allpage;
+                } else if (p <= (showpage / 2 + 1)) {
+                    begin = 1;
+                    end = showpage;
+                    next = true;
+                } else if (p <= (allpage - (showpage / 2))) {
+                    before = true;
+                    next = true;
+                    begin = p - (showpage / 2);
+                    end = p + (showpage / 2);
+                } else {
+                    before = true;
+                    begin = allpage - showpage + 1;
+                    end = allpage;
+                }
+                if (p != 1 && allpage > 1) {
+                    before = true;
+                }
+                if (allpage > 1 && p != allpage) {
+                    next = true;
+                }
+                if (allpage < p) {
+                    haspage = false;
+                }
+                super.addObject("haspage", haspage);
+                super.addObject("cpage", p);
+                super.addObject("pageBegin", begin);
+                super.addObject("pageEnd", end);
+                super.addObject("pageNext", next);
+                super.addObject("pageBefore", before);
+            }
+        }
+
+</code>
+                </pre>
+                <h4>3. 分页的jsp模块</h4>
+                <p>分页需要html,js,css 这些模块必不可少，但这些东西不能整合到后端js库中，因为不是每个页面都需要分页，并且分页这种模块理应该属于后端业务页面的一部分,而不是存在于公共库中</p>
+                <p>在项目中新建paging.jsp （最好放/admin/page,或者其他已经存在的公共组件文件夹下）将下面代码拷贝过去即可</p>
+                <pre>
+                    <code class="language">
+        &lt;%@page contentType="text/html" pageEncoding="UTF-8"%>
+        &lt;%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+        &lt;c:if test="${haspage&& pageEnd>1}">
+            &lt;style type="text/css">
+                .page-op{width:320px;float:right}
+                .page-op .page-btn{float:left;width:78px;border:1px solid #dfdfdf;background:#fff;font-size:12px;height:24px;line-height:24px;text-align:center;cursor:pointer}
+                .page-op .page-btn:hover{border-color:#b8c3e0}
+                .page-op .page-link{background: #fff;display:block;float:left;width:24px;height:24px;border-radius:3px;font-size:12px;border:1px solid #dfdfdf;text-align:center;line-height:24px;cursor:pointer;margin:0px 4px}
+                .page-op .page-link.current{border:none;background:#f61d64;color:#fff}
+                .page-op .page-link:hover{border-color:#b8c3e0}
+                .page-wrap.fix{
+                    position:fixed;
+                    right:0px;
+                    bottom: 0px;
+                    width: 360px;
+                    padding-top: 10px;
+                    height: 40px;
+                    background: rgba(0,0,0,0.3);
+                }
+            &lt;/style>
+            &lt;div class="page-wrap fix">
+                &lt;div class="page-op clear fix" id='page-op'  ${pageBegin} ${pageEnd}>
+                    &lt;c:if test="${pageBefore}">
+                        &lt;a class="pre-page page-btn"  p="${cpage-1}" >上一页&lt;/a>
+                    &lt;/c:if>
+                    &lt;c:forEach var="item" varStatus="c" begin="${pageBegin}" end="${pageEnd}">
+                        &lt;a class="page-link  &lt;c:if test="${c.index==cpage}">current&lt;/c:if>"  p="${c.index}" >${c.index}&lt;/a>
+                    &lt;/c:forEach>
+                    &lt;c:if test="${pageNext}">
+                        &lt;a class="next-page page-btn" p="${cpage+1}"  >下一页&lt;/a>
+                    &lt;/c:if>
+                &lt;/div>
+            &lt;/div>
+            &lt;script type="text/javascript">
+                $(function () {
+                    $("#page-op .page-btn,#page-op .page-link").on("click", function () {
+                        if (!$(this).hasClass("current")) {
+                            var p = $(this).attr("p");
+                            window.location.search = Ut.search('p', p);
+                        }
+                    })
+                })
+            &lt;/script>
+        &lt;/c:if>
+</code>
+                </pre>
+                <h4>1.最后一步，分页业务页面</h4>
+                <p> 业务页面只需要做两件事</p>
+                <ul>
+                    <li>1. table 定制化</li>
+                    <li>2. 引入分页组件</li>
+                </ul>
+                <pre>
+                <code class="language">
+        &lt;table class="table table-bordered" id="zytable" hidepage="true">
+        // id 需要设置为 zytable
+        // hidepage="true" 隐藏掉datatable 的分页组件
+        &lt;/table>
+        &lt;%--引入分页组件（必须）--%>      
+        &lt;jsp:include page="../page/paging.jsp">&lt;/jsp:include>
+                </code>
+                </pre>
+                <h4> 最后的提醒</h4>
+                <p> 这个适用于章鱼后端页面， 页面中需要有引用章鱼后端框架，其他页面尚未测试</p>
+            </div>
+        </div>
+    </body>
+</html>
