@@ -67,6 +67,8 @@
             <div class="expand">
                 <span class="b1"></span>
                 <span class="b2"></span>
+                <span class="b3"></span>
+                <span class="b4"></span>
             </div>
         </div>
 </tmplate>

@@ -31,6 +31,7 @@ fis.match("*(*.tpl)", {
     rExt: '.js',
 //    release: "/jstpl/$1"
 })
+
 //===================== 忽略规则  ===================
 fis.set('project.ignore', [
     '**/nbproject/**',

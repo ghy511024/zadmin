@@ -1,0 +1,113 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 2017-6-6, 12:31:37
+    Author     : ghy
+*/
+.gblog{
+    body{
+        font-family: Roboto, "Helvetica Neue", Helvetica, sans-serif;
+        background: #eee;
+    }
+    .main{
+        font-size: 13px;
+        line-height: 20px;
+        width: 960px;
+        padding: 30px 50px;
+        background: #fff;
+        margin: 80px auto !important;;
+
+        h1,h2,h3,h4,h5,h6,p{
+            color: #212121;
+            font-weight: 400;
+        }
+        ol,ul{
+            margin: 0;outline: 0;padding: 0;vertical-align: baseline;
+            ul{list-style-type: disc;}
+        }
+        div,ul,ol,p{
+            margin: 4px 0 12px;
+        }
+        h1{font-size: 24px;line-height: 32px;margin: 0 0 8px;}
+        h2{font-size:20px;line-height:32px;margin:32px 0 8px}
+        h3{font-size:18px;font-weight:500;line-height:28px;margin:24px 0 8px}
+        h4{font-size:16px;font-weight:700;line-height:24px;margin:20px 0 4px}
+        h5{font-size:14px;font-weight:inherit;line-height:24px;margin:16px 0 4px} 
+        p{
+            line-height: 20px;
+
+        }
+        a{
+            color: #4285f4;
+            text-decoration: none;
+            &:hover{
+                text-decoration: underline;
+            }
+        }
+        ol{
+            >li{
+                margin: 4px 0 4px 20px;
+                &:first-child{
+                    margin-top: 0;
+                }
+            }
+        }
+        ul{
+            /*margin: 4px 0 12px;*/
+            >li{
+                margin: 4px 0 4px 20px;
+                list-style-type: none;
+                margin-left: 0;
+                padding-left: 16px;
+                &:before{
+                    content: "\002022";
+                    float: left;
+                    font-size: 16px;
+                    margin-left: -14px;
+                }
+            }
+        }
+        .zwrap{
+            position:relative;
+            .title{
+                font-size: 15px;
+                line-height: 24px;
+                box-sizing: border-box;
+                color: #4285f4;
+                display: inline-block;
+                font-weight: normal;
+                margin: -1px;
+                outline: none;
+                padding: 0px 50px 5px 16px;
+                position: relative;
+                width: 100%;
+            }
+            .content{
+                position:relative;
+                margin: 0 0 0 18px;
+                padding: 1px 26px 0px 16px;
+                position: relative;
+                &:before{
+                    background-color: #e0e0e0;
+                    content: '';
+                    left: 0;
+                    position: absolute;
+                    top: 6px;
+                    bottom:0px;
+                    width: 2px;
+                }
+            }
+        }
+        /*pre code*/
+        pre{
+            margin:0px;
+            padding:0px;
+            border:0;
+            border-radius: 0;
+            background: none;
+        }
+    }
+}

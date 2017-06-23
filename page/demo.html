@@ -4,7 +4,7 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
-<html>
+<html class="admin_blog">
     <head>
         <title>coolAdmin--demo</title>
         <meta charset="UTF-8">
@@ -14,6 +14,7 @@ and open the template in the editor.
 <link rel="stylesheet" href="http://static.ws.kukuplay.com/common/styles/dataTables.bootstrap.css"/>
 <!--自定义后端样式-->
 <link rel="stylesheet" href="/dist/css/adminpage.all.css"/>
+
 <link type="text/css" rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.11.0/styles/agate.min.css"/>
 
 <script type="text/javascript" src="https://cdn.bootcss.com/highlight.js/9.11.0/highlight.min.js"></script>
@@ -27,6 +28,9 @@ and open the template in the editor.
 <script  src="http://static.ws.kukuplay.com/common/scripts/lib/dataTables.bootstrap.js"></script>
 <!--后端底层库-->
 <!--<script src="http://static.ws.kukuplay.com/common/lib/zylib/v3.0/adminV4.js"></script>-->
+
+<!--admin 博客专用样式-->
+<link rel="stylesheet" href="/dist/css/css/blog/adminblog.css"/>
 <script src="/dist/zadmin.all.js"></script>
 <script src="/page/lib/main.js"></script>
 
@@ -51,10 +55,8 @@ and open the template in the editor.
 </script>  
     </head>
     <body>
-        <div id="content">
-            <div class="content-title">
-                <h5>coolAdmin v3.0 demo 教程</h5>
-            </div>
+        <div class="main">
+            <h2>coolAdmin v4.0 demo </h2>
             <div class="cond">
                 <div class="form">
                     <label>开始时间：</label><input type="text" id="start-time" class="timepicker"/>

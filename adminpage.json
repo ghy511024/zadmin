@@ -20,9 +20,6 @@
                         "name": "demo",
                         "url": "/page/cooladmin/course/demo.html"
                     }, {
-                        "name": "结构介绍",
-                        "url": "/page/cooladmin/course/structure.html"
-                    }, {
                         "name": "工具函数",
                         "url": "/page/cooladmin/course/utils.html"
                     }, {

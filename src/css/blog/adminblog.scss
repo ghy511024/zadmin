@@ -1,0 +1,91 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 2017-6-23, 16:19:25
+    Author     : ghy
+*/
+.admin_blog{
+    *{box-sizing: border-box;}
+    body{  background:#f7f7f7;}
+    .main{
+        width: 1000px;
+        margin: 0 auto;
+        box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.17);
+        margin-top:20px;
+        padding: 50px;
+        background:#fff;
+        h1,h2,h3,h4,h5,h6,p{
+            color: #212121;
+            font-weight: 400;
+        }
+        h1{
+            font-size: 24px;line-height: 32px;margin: 0 0 8px;position:relative;
+        }
+        h2{
+            font-size: 20px;line-height: 30px;margin: 32px 0 8px;position:relative; 
+        }
+        h3{
+            font-size:18px;font-weight:500;line-height:28px;margin:24px 0 8px;position:relative; 
+        }
+        h4{
+            font-size:16px;font-weight:500;line-height:24px;margin:20px 0 8px;position:relative; 
+        }
+        h5{
+            font-size:14px;font-weight:500;line-height:20px;margin:16px 0 8px;position:relative;
+        }
+        &>h1:first-child{
+            text-indent:10px;
+            margin-top: 8px;padding-bottom: 15px;border-bottom: 1px solid #ccc;
+            &:before{content: "";position: absolute;border-left: 3px solid #88B7E0;height: 28px;left: 0px;top: 3px;}
+        }
+        &>h2:first-child{
+            text-indent:10px;
+            margin-top: 8px;padding-bottom: 15px;border-bottom: 1px solid #ccc;
+            &:before{content: "";position: absolute;border-left: 3px solid #88B7E0;height: 24px;left: 0px;top: 4px;}
+        }
+        &>h3:first-child{
+            text-indent:8px;
+            margin-top: 7px;padding-bottom: 13px;border-bottom: 1px solid #ccc;
+            &:before{content: "";position: absolute;border-left: 2px solid #88B7E0;height: 20px;left: 0px;top: 5px;}
+        }
+        &>h4:first-child{
+            text-indent:8px;
+            margin-top: 6px;padding-bottom: 12px;border-bottom: 1px solid #ccc;
+            &:before{content: "";position: absolute;border-left: 2px solid #88B7E0;height: 18px;left: 0px;top: 4px;}
+        }
+        &>h5:first-child{
+            text-indent:8px;
+            margin-top: 8px;padding-bottom: 12px;border-bottom: 1px solid #ccc;
+            &:before{content: "";position: absolute;border-left: 2px solid #88B7E0;height: 14px;left: 0px;top: 3px;}
+        }
+        p{  line-height: 20px;}
+        >a{color: #4285f4;text-decoration: none;&:hover{text-decoration: underline;}}
+        ol{
+            >li{
+                margin: 4px 0 4px 20px;
+                &:first-child{
+                    margin-top: 0;
+                }
+            }
+        }
+        ul{
+            /*margin: 4px 0 12px;*/
+            >li{
+                margin: 4px 0 4px 20px;
+                list-style-type: none;
+                margin-left: 0;
+                padding-left: 16px;
+                &:before{
+                    content: "\002022";
+                    float: left;
+                    font-size: 16px;
+                    margin-left: -14px;
+                }
+            }
+        }
+    }
+}
+
