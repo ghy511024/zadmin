@@ -134,7 +134,7 @@ window.Admins = (function (ZA) {
 
                             data.tagnav = cpage["tagnav"];// 左侧导航数据
                             data.linknav = cpage["linknav"];// 左侧导航数据
-
+                            data.homelink = window.HOME_LINK;
                             var headstr = TPL.getTpl("admin-head");
                             var headtmp = new jsptpl(headstr);
                             var headstr_out = headtmp.render(data)

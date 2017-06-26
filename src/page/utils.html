@@ -4,28 +4,18 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
-<html>
+<html class="admin_blog">
     <head>
         <title>coolAdmin--demo</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <script type="text/javascript" src="http://static.ws.kukuplay.com/common/lib/jquery/v1.9.2/jquery-1.9.2.js"></script>
-        <script type="text/javascript" src="/page/header/js/adminload.js"></script>
+        <link rel="import" href="lib/clib.html?__inline">
     </head>
     <body>
-        <div id="content">
-            <div class="content-title">
-                <h5>coolAdmin 内置函数使用介绍</h5>
-            </div>
+        <div class="main">
+            <h2>coolAdmin 内置函数使用介绍</h2>
             <div class="mt20">
-                <p>
-                    此教程中的所有函数，均可在本页面F12打开控制台，在控制台中测试，以便观察结果。
-                </p>
                 <h3 class='mt50'>1：工具类 Ut</h3>
-                <p>方法截图：</p>
-                <p>
-                    <img src="../images/Ut/pic-ut.png" alt="" />
-                </p>
                 <p>Ut 工具类在引入coolAdmin 后就可以使用了，下面为Ut工具类的具体使用</p>
                 <pre><code class="language">
             //==================Ut.getParam=======================
@@ -62,14 +52,14 @@ and open the template in the editor.
             Ut.search("key3", "hehe")//地址栏为 http://www.zhangyu.tv?key1=haha&key2=xixi&key3=hehe
                 </code></pre>
             </div>
-            <h3 class='mt50'>2：自定义系统弹窗zalert()</h3>
+            <h3>2：自定义系统弹窗zalert()</h3>
             <p>系统弹窗函数 alert()。自定义弹窗函数 zalert() <div class="btn btn-info" onclick="zalert('hellow')">测试</div></p>
         <pre><code class="language">
           $(".xxx").on("click",function(){
                 zalert("hellow")//（此函数将不会阻塞其他函数的执行）
             })
                 </code></pre>
-        <h3 class='mt50'>
+        <h3>
             3： unixtime 转换为字符串
         </h3>
         <pre><code class="language">

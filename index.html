@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html class="admin_blog">
+    <head>
+        <title>coolAdmin V4.0 简介</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="http://static.ws.kukuplay.com/common/lib/bootstrap/v3.3.5/css/bootstrap.min.css"/>
+<link rel="stylesheet" href="http://static.ws.kukuplay.com/common/lib/jquery-ui/v1.8.21/jquery-ui.1.8.21.min.css"/>
+<link rel="stylesheet" href="http://static.ws.kukuplay.com/common/styles/dataTables.bootstrap.css"/>
+<!--自定义后端样式-->
+<link rel="stylesheet" href="/dist/css/adminpage.all.css"/>
+
+<link type="text/css" rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.11.0/styles/agate.min.css"/>
+
+<script type="text/javascript" src="https://cdn.bootcss.com/highlight.js/9.11.0/highlight.min.js"></script>
+<script  src="http://static.ws.kukuplay.com/common/lib/jquery/jquery-1.9.4.js"></script>
+<script  src="http://static.ws.kukuplay.com/common/lib/bootstrap/v3.3.5/js/bootstrap.min.js"></script>
+<!--日期控件-->
+<script  src="http://static.ws.kukuplay.com/common/lib/jquery-ui/v1.8.21/jquery-ui.1.8.21.min.js"></script>
+<script type="text/javascript" src="http://static.ws.kukuplay.com/common/date/jquery-ui-datetimepicker-zh-CN.js"></script>
+<!--数据表格库-->
+<script  src="http://static.ws.kukuplay.com/common/scripts/lib/jquery.dataTables.min.js"></script>
+<script  src="http://static.ws.kukuplay.com/common/scripts/lib/dataTables.bootstrap.js"></script>
+<!--后端底层库-->
+<!--<script src="http://static.ws.kukuplay.com/common/lib/zylib/v3.0/adminV4.js"></script>-->
+
+<!--admin 博客专用样式-->
+<link rel="stylesheet" href="/dist/css/css/blog/adminblog.css"/>
+<script src="/dist/zadmin.all.js"></script>
+<script src="/page/lib/main.js"></script>
+
+<script >
+    window.HOME_LINK = "/";
+    window.CONF_URL = "/mock/adminpage.json";
+    window.zadmin = (function (fun) {
+        var tmpfun = [];
+        admin = {
+            ready: function (fun) {
+                if (typeof fun === "function") {
+                    tmpfun.push(fun);
+                }
+            }, init: function () {
+                for (var i in tmpfun) {
+                    tmpfun[i]();
+                }
+            }
+        };
+        return admin;
+    })();
+</script>  
+    </head>
+    <body>
+        <div class="main">
+            <h2>简介</h2>
+            <p>网站后端往往是，伴随着一堆简单的配置构成的。比如底部的友情链接配置，查看充值详情，推荐位调整等。这些都是给运营人员用的简单功能，由开发哥哥开发完，给运营用，那这些功能在开发中如何高效的开发呢？</p>
+            <h4>后端增删查该页面，这些该谁来写？</h4>
+            <p style="color:#4285f4">前端来写！</p>
+            <p>前端很忙，后端页面业务逻辑也稍微简单一些，就是ajax 数据之类的，让前端来写有点浪费人力。而且并不一定能做的多好看。</p>
+            <p>一个功能花了一个后端提供接口，一个前端来写交互页面，整体效率是比较低的。</p>
+            <p style="color:#4285f4">后端来写！</p>
+            <p>后端对基本的html ajax 这些业务处理是完全没问题的。</p>
+            <p>这些反正都是内部人自己用的，没必要那么好看</p>
+            <p>终于有一天，后端业务稍微复杂了一些，需要写个弹窗，点击查看图片之类的。表格太长了需要简化一下，然后后端，无奈的百度了半天怎么去实现这些自己不擅长的东西</p>
+            <h4>共同问题</h4>
+            <p>企业网站发展到一定程度，都会面临几个问题</p>
+            <ul>
+                <li>项目开始细化拆分，各种管理页面分布在不同的项目中，无法统一管理</li>
+                <li>后端开发管理页面，页面很丑，使用不方便，自身开发也费劲。费力不讨好</li>
+                <li>管理页面的入口无法很方便的管理，通常一个页面写一堆入口链接，十分繁琐</li>
+                <li>引入第三方管理模版之类的，存在修改原来的业务代码，并且熟悉第三方管理模版的使用规则。成本有一点高</li>
+            </ul>
+            <p>coolAdmin 正是为了解决这些问题，而诞生的管理系统前端框架</p>
+            <p>优点</p>
+            <ul>
+                <li>不浸染业务，原有的业务页面可以无缝迁移</li>
+                <li>页面入口整合，分布式项目页面入口可以统一配置，统一显示</li>
+                <li>提供丰富的后端组件。图片弹窗，动态表单等</li>
+                <li>上手简单，老少皆宜</li>
+            </ul>
+            <p>唉，以上都是废话了，这个东西也就自己组内用了，全当文档使了</p>
+            <p>
+                <a href="/page/start.html">立刻开始</a>或者<a href="/page/demo.html">查看demo</a>
+            </p>
+        </div>
+    </body>
+</html>

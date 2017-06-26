@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html class="admin_blog">
+    <head>
+        <title>zlib wave--章鱼wiki </title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="import" href="../lib/clib.html?__inline">
+        <style type="text/css">
+            li.haha{width:200px;height:200px;overflow:hidden;position:relative;float:left;margin-left: 20px;}
+            li img{position:absolute;width:100%;height:100%;top:0px;left:0px;}
+            .bb{padding:20px;margin-left: 20px;}
+        </style>
+    </head>
+    <body>
+        <div class="main">
+            <h2>zlib 水纹插件</h2>
+            <h4>1.引入插件</h4>
+            <pre><code class="language">
+      &lt;script type="text/javascript" src="dist/zlib/zlib.all.min.js">&lt;/script>
+                </code></pre>
+            <h4>2.使用插件</h4>
+            <pre><code class="language">
+                &lt;ul>
+                    &lt;li class="haha">
+                        &lt;img src="http://fengyun-bar.b0.upaiyun.com/146952177859910.png" alt="" />
+                    &lt;/li>
+                    &lt;li class="haha">
+                        &lt;a href="##">
+                            &lt;img src="http://fengyun-bar.b0.upaiyun.com/146952177859910.png" alt="" />
+                        &lt;/a>
+                    &lt;/li>
+                    &lt;li>
+                        &lt;input type="text" class="haha"/>
+                    &lt;/li>
+                &lt;/ul>
+                 &lt;script type="text/javascript">
+                    zlib.ui.wave("haha")// class 类名（注意前面不要加 .）
+                 &lt;/script>
+                </code></pre>
+            <h4>3.效果</h4>
+            <div class="demo">
+                <ul class="clear">
+                    <li class="haha">
+                        <img src="http://fengyun-bar.b0.upaiyun.com/146952177859910.png" alt="" />
+                    </li>
+                    <li class="haha">
+                        <a href="##">
+                            <img src="http://fengyun-bar.b0.upaiyun.com/146952177859910.png" alt="" />
+                        </a>
+                    </li>
+                    <li>
+                        <input type="text" class="haha bb" style="padding: 30px"/>
+                    </li>
+                </ul>
+            </div>
+            <h4>4.补充</h4>
+            <p>插件还在完善中，介绍后面再补充</p>
+        </div>
+        <script type="text/javascript">
+            zlib.ui.wave("haha")
+        </script>
+    </body>
+</html>

@@ -9,16 +9,55 @@ and open the template in the editor.
         <title>coolAdmin--demo</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <script type="text/javascript" src="http://static.ws.kukuplay.com/common/lib/jquery/v1.9.2/jquery-1.9.2.js"></script>
-         <link rel="import" href="lib/clib.html?__inline">
+        <link rel="stylesheet" href="http://static.ws.kukuplay.com/common/lib/bootstrap/v3.3.5/css/bootstrap.min.css"/>
+<link rel="stylesheet" href="http://static.ws.kukuplay.com/common/lib/jquery-ui/v1.8.21/jquery-ui.1.8.21.min.css"/>
+<link rel="stylesheet" href="http://static.ws.kukuplay.com/common/styles/dataTables.bootstrap.css"/>
+<!--自定义后端样式-->
+<link rel="stylesheet" href="/dist/css/adminpage.all.css"/>
+
+<link type="text/css" rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.11.0/styles/agate.min.css"/>
+
+<script type="text/javascript" src="https://cdn.bootcss.com/highlight.js/9.11.0/highlight.min.js"></script>
+<script  src="http://static.ws.kukuplay.com/common/lib/jquery/jquery-1.9.4.js"></script>
+<script  src="http://static.ws.kukuplay.com/common/lib/bootstrap/v3.3.5/js/bootstrap.min.js"></script>
+<!--日期控件-->
+<script  src="http://static.ws.kukuplay.com/common/lib/jquery-ui/v1.8.21/jquery-ui.1.8.21.min.js"></script>
+<script type="text/javascript" src="http://static.ws.kukuplay.com/common/date/jquery-ui-datetimepicker-zh-CN.js"></script>
+<!--数据表格库-->
+<script  src="http://static.ws.kukuplay.com/common/scripts/lib/jquery.dataTables.min.js"></script>
+<script  src="http://static.ws.kukuplay.com/common/scripts/lib/dataTables.bootstrap.js"></script>
+<!--后端底层库-->
+<!--<script src="http://static.ws.kukuplay.com/common/lib/zylib/v3.0/adminV4.js"></script>-->
+
+<!--admin 博客专用样式-->
+<link rel="stylesheet" href="/dist/css/css/blog/adminblog.css"/>
+<script src="/dist/zadmin.all.js"></script>
+<script src="/page/lib/main.js"></script>
+
+<script >
+    window.HOME_LINK = "/";
+    window.CONF_URL = "/mock/adminpage.json";
+    window.zadmin = (function (fun) {
+        var tmpfun = [];
+        admin = {
+            ready: function (fun) {
+                if (typeof fun === "function") {
+                    tmpfun.push(fun);
+                }
+            }, init: function () {
+                for (var i in tmpfun) {
+                    tmpfun[i]();
+                }
+            }
+        };
+        return admin;
+    })();
+</script>  
     </head>
     <body>
         <div class="main">
             <h2>coolAdmin 内置函数使用介绍</h2>
             <div class="mt20">
-                <p>
-                    此教程中的所有函数，均可在本页面F12打开控制台，在控制台中测试，以便观察结果。
-                </p>
                 <h3 class='mt50'>1：工具类 Ut</h3>
                 <p>Ut 工具类在引入coolAdmin 后就可以使用了，下面为Ut工具类的具体使用</p>
                 <pre><code class="language">
@@ -56,14 +95,14 @@ and open the template in the editor.
             Ut.search("key3", "hehe")//地址栏为 http://www.zhangyu.tv?key1=haha&key2=xixi&key3=hehe
                 </code></pre>
             </div>
-            <h3 class='mt50'>2：自定义系统弹窗zalert()</h3>
+            <h3>2：自定义系统弹窗zalert()</h3>
             <p>系统弹窗函数 alert()。自定义弹窗函数 zalert() <div class="btn btn-info" onclick="zalert('hellow')">测试</div></p>
         <pre><code class="language">
           $(".xxx").on("click",function(){
                 zalert("hellow")//（此函数将不会阻塞其他函数的执行）
             })
                 </code></pre>
-        <h3 class='mt50'>
+        <h3>
             3： unixtime 转换为字符串
         </h3>
         <pre><code class="language">

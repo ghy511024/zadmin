@@ -24,6 +24,8 @@ fis.match('*(*all*.js)', {
     release: "/page/$1",
 }).match('*(*all*.scss)', {
     release: "/dist/css/$1",
+}).match('src/page/index.html', {
+    release: "/index.html"
 })
 // jsptpl 模版
 fis.match("*(*.tpl)", {
